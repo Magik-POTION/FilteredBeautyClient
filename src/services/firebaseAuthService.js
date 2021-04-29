@@ -18,9 +18,9 @@ export default class FirebaseService {
     };
 
     /**
-     *
-     * @param {String} email
-     * @param {String} password
+     * Creates a new firebase account.
+     * @param {String} email to be used for new account
+     * @param {String} password to be used for new account
      * @returns a firebase user object
      */
     static signUp = async (email, password) => {
@@ -53,8 +53,8 @@ export default class FirebaseService {
 
     /**
      *  Signs in an exsisting firebase user.
-     * @param {String} email
-     * @param {String} password
+     * @param {String} email to log in
+     * @param {String} password to log in
      * @returns
      */
     static signIn = async (email, password) => {
@@ -67,5 +67,51 @@ export default class FirebaseService {
         const user = usercred.user;
 
         return user;
+    };
+
+    /**
+     * Updates the user's display name.
+     * In the future this can be updated to update firebase' user photoURL.
+     * @param {String} displayName the new display name to be set
+     */
+    static updateUser = async (displayName) => {
+        const user = await this.getCurrentUser();
+        await user.updateProfile({
+            displayName: displayName,
+        });
+    };
+
+    /**
+     * Gets the currently logged in user.
+     * @returns firebase user object.
+     */
+    static getCurrentUser = async () => {
+        // Asynchronously gets the current user.
+        return new Promise((resolve, reject) => {
+            const unsubscribe = firebase.auth().onAuthStateChanged(
+                (user) => {
+                    if (user) {
+                        resolve(user);
+                    } else {
+                        reject(new Error("User Doexsn't Exist"));
+                    }
+                    unsubscribe();
+                },
+                (error) => {
+                    reject(error);
+                    unsubscribe();
+                }
+            );
+        });
+    };
+
+    /**
+     * Gets a user IdToken from firebase to use API.
+     * @returns IdToken
+     */
+    static getIdToken = async () => {
+        const user = await this.getCurrentUser();
+        const IdToken = await user.getIdToken();
+        return IdToken;
     };
 }
