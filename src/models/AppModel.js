@@ -11,7 +11,7 @@ class AppModel {
     constructor() {
         /**
          * State that represents the app's state.
-         * Usefull to disable buttons when handling asynchronous tasks.
+         * Useful to disable buttons when handling asynchronous tasks.
          */
         this.isLoading = new BehaviorSubject(false);
 

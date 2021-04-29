@@ -14,9 +14,9 @@ class AppController {
     }
 
     // Loads app assets.
-    load() {
-        this.userController.load();
+    async load() {
+        await this.userController.load();
     }
 }
 
-export default AppController.instace;
+export default AppController.instance;
