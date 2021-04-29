@@ -12,5 +12,8 @@ export default class UserController {
         this.userModel = userModel;
     }
 
-
+    // Loads user information.
+    async load() {
+        // TODO: Implement user loading functionality
+    }
 }

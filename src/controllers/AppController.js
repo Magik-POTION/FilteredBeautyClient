@@ -12,6 +12,11 @@ class AppController {
         // Various controllers below.
         this.userController = new UserController(AppModel.userModel);
     }
+
+    // Loads app assets.
+    load() {
+        this.userController.load();
+    }
 }
 
 export default AppController.instace;
