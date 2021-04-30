@@ -1,4 +1,5 @@
 import UserModel from "../models/UserModel";
+import ProductsModel from "../models/ProductsModel";
 import { BehaviorSubject } from "rxjs";
 
 /**
@@ -17,6 +18,9 @@ class AppModel {
 
         // Various model instances below.
         this.userModel = new UserModel();
+        this.favouritesModel = new ProductsModel();
+        this.historyModel = new ProductsModel();
+        this.searchModel = new ProductsModel();
     }
 }
 
