@@ -13,7 +13,7 @@ export default (observable, initialValue) => {
     );
 
     /**
-     * Creates observable instance and unsubscribes when com
+     * Creates observable instance and unsubscribes when complete.
      */
     React.useEffect(() => {
         // Creates a subscription that updates the value on rerenders.
