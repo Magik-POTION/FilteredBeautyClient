@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import * as firebase from "firebase";
+import "firebase/firestore";
 import Constants from "expo-constants";
 
 // Firebase Initialization

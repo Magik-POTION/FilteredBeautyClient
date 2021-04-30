@@ -76,9 +76,9 @@ export default class UserController {
     setUserProperties(firebaseUser) {
         this.userModel.uid.next(firebaseUser.uid);
         this.userModel.isAnonymous.next(firebaseUser.isAnonymous);
-        currentUser.displayName != null &&
+        firebaseUser.displayName != null &&
             this.userModel.displayName.next(firebaseUser.displayName);
-        currentUser.photoURL != null &&
+            firebaseUser.photoURL != null &&
             this.userModel.photoURL.next(firebaseUser.photoURL);
     }
 }

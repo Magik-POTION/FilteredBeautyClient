@@ -1,6 +1,6 @@
 import React from "react";
 import { Alert, StatusBar } from "react-native";
-import Navigation from "./src/navigations/Navigation";
+import PlaceHolderView from "./src/views/PlaceHolderView";
 import AppLoading from "expo-app-loading";
 import AppController from "./src/controllers/AppController";
 
@@ -12,7 +12,7 @@ export default App = () => {
             await AppController.load();
             setIsLoading(false);
         } catch (error) {
-            Alert.alert(ERROR, error.message, [
+            Alert.alert("Error Loading Assets", error.message, [
                 {
                     text: "Retry",
                     onPress: () => load(),
@@ -32,5 +32,5 @@ export default App = () => {
         load();
     }, []);
 
-    return isLoading ? <AppLoading /> : <Navigation />;
+    return isLoading ? <AppLoading /> : <PlaceHolderView />;
 };
