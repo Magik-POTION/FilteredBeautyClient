@@ -8,7 +8,7 @@ import {
 import AppLoading from "expo-app-loading";
 import AppController from "./src/controllers/AppController";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
-// import LoginScreen from "./src/screens/LoginScreen";
+import LoginScreen from "./src/screens/LoginScreen";
 
 export default App = () => {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -38,5 +38,5 @@ export default App = () => {
         load();
     }, []);
 
-    return isLoading ? <AppLoading /> : <WelcomeScreen />;
+    return isLoading ? <AppLoading /> : <LoginScreen />;
 };

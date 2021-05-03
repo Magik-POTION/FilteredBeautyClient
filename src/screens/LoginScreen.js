@@ -4,58 +4,28 @@ import {
     StyleSheet,
     Image,
     Text,
-    Alert,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
-import {
-    useForm,
-    Controller
-} from 'react-hook-form';
 
 import colours from "../../config/colours";
 
-function LoginScreen(props) {
-    const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+function LoginScreen() {
 
     return (
         <View style={styles.background}>
             <Image style={styles.logo} source={require("../../assets/logo.png")} />
-            <View>
-                <Controller
-                    control = {control}
-                    render = { ({ field: { onChange, onBlur, value } }) => (
-                        <TextInput 
-                            style={styles.input}
-                            onBlur={onBlur}
-                            onChangeText={value => onChange(value)}
-                            value={value}
-                        />
-                    )}
-                    name="email"
-                    rules={{ required: true}}
-                    defaultValue=""
-                />
-                {errors.email && <Text>This is required.</Text>}
-
-                <Controller
-                    control = {control}
-                    render = { ({ field: { onChange, onBlur, value } }) => (
-                        <TextInput 
-                            style={styles.input}
-                            onBlur={onBlur}
-                            onChangeText={value => onChange(value)}
-                            value={value}
-                        />
-                    )}
-                    name="password"
-                    rules={{ required: true}}
-                    defaultValue=""
-                />
-                {errors.password && <Text>This is required.</Text>}
-            </View>
-            <TouchableOpacity style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
+            <TextInput
+                style={styles.textInputA}
+                placeholder='email@email.com'
+            />
+            <TextInput
+                style={styles.textInputB}
+                secureTextEntry={true}
+                placeholder='password'
+            />
+            <TouchableOpacity style={styles.loginButton} onPress={() => Alert.alert("clicked")}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
@@ -69,6 +39,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
+    buttonText: {
+        color: 'white',
+        textAlign: 'center',
+        textTransform: 'uppercase'
+    },
     loginButton: {
         width: '100%',
         height: 70,
@@ -81,10 +56,25 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 120
     },
-    buttonText: {
-        color: 'white',
+    textInputA: {
+        position: 'absolute',
+        top: 400,
+        marginTop: 20,
+        width: 300,
+        height: 40,
         textAlign: 'center',
-        textTransform: 'uppercase'
+        backgroundColor: colours.grey,
+        borderRadius: 50
+    },
+    textInputB: {
+        position: 'absolute',
+        top: 450,
+        marginTop: 20,
+        width: 300,
+        height: 40,
+        textAlign: 'center',
+        backgroundColor: colours.grey,
+        borderRadius: 50
     }
 })
 
