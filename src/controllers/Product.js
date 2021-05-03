@@ -8,5 +8,12 @@ export default class Product {
      */
     constructor(product) {
         // set needed properties here.
+        this.id = product.id;
+    }
+
+    getProperties() {
+        return {
+            id: this.id,
+        };
     }
 }
