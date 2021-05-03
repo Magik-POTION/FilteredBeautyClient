@@ -5,40 +5,29 @@ import {
     Image,
     Text,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
-import { Formik } from 'formik';
 
 import colours from "../../config/colours";
 
-function LoginScreen(props) {
+function LoginScreen() {
 
     return (
         <View style={styles.background}>
-            <Formik
-                intialValues={{ username: '', password: ''}}
-                onSubmit={(values) => {
-                    console.log(values);
-                }}
-            >
-                {(props) => (
-                    <View>
-                        <TextInput
-                            placeholder="email@email.com"
-                            onChangeText={props.handleChange('username')}
-                            value={props.values.username}
-                        />
-                        <TextInput
-                            placeholder="password"
-                            onChangeText={props.handleChange('password')}
-                            value={props.values.password}
-                        />
-                        <TouchableOpacity style={styles.loginButton} onPress={() => props.handleSubmit}>
-                            <Text style={styles.buttonText}>Login</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            </Formik>
+            <Image style={styles.logo} source={require("../../assets/logo.png")} />
+            <TextInput
+                style={styles.textInputA}
+                placeholder='email@email.com'
+            />
+            <TextInput
+                style={styles.textInputB}
+                secureTextEntry={true}
+                placeholder='password'
+            />
+            <TouchableOpacity style={styles.loginButton} onPress={() => Alert.alert("clicked")}>
+                <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -49,6 +38,11 @@ const styles = StyleSheet.create({
         backgroundColor: colours.background,
         justifyContent: 'flex-end',
         alignItems: 'center'
+    },
+    buttonText: {
+        color: 'white',
+        textAlign: 'center',
+        textTransform: 'uppercase'
     },
     loginButton: {
         width: '100%',
@@ -62,10 +56,25 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 120
     },
-    buttonText: {
-        color: 'white',
+    textInputA: {
+        position: 'absolute',
+        top: 400,
+        marginTop: 20,
+        width: 300,
+        height: 40,
         textAlign: 'center',
-        textTransform: 'uppercase'
+        backgroundColor: colours.grey,
+        borderRadius: 50
+    },
+    textInputB: {
+        position: 'absolute',
+        top: 450,
+        marginTop: 20,
+        width: 300,
+        height: 40,
+        textAlign: 'center',
+        backgroundColor: colours.grey,
+        borderRadius: 50
     }
 })
 
