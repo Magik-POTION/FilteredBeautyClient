@@ -18,22 +18,26 @@ export default function WelcomeScreen() {
 
     return (
         <View style={styles.background}>
-            <Image
-                style={styles.logo}
-                source={require("../../assets/logo.png")}
-            />
-            <TouchableOpacity
-                style={styles.loginButton}
-                onPress={handleLoginButton}
-            >
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.signupButton}
-                onPress={handleSignUpButton}
-            >
-                <Text style={styles.buttonText}>Sign up</Text>
-            </TouchableOpacity>
+            <View style={styles.top}>
+                <Image
+                    style={styles.logo}
+                    source={require("../../assets/logo.png")}
+                />
+            </View>
+            <View style={styles.bottom}>
+                <TouchableOpacity
+                    style={[styles.button, styles.loginButton]}
+                    onPress={handleLoginButton}
+                >
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.button, styles.signupButton]}
+                    onPress={handleSignUpButton}
+                >
+                    <Text style={styles.buttonText}>Sign up</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -42,30 +46,38 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         backgroundColor: colours.background,
-        justifyContent: "flex-end",
         alignItems: "center",
     },
-    loginButton: {
+    bottom: {
+        flex: 1,
+        width: "100%",
+        height: "30%",
+        justifyContent: "flex-end"
+    },
+    button: {
         width: "100%",
         height: 70,
-        backgroundColor: colours.primary,
         justifyContent: "center",
-    },
-    logo: {
-        width: 195,
-        height: 195,
-        position: "absolute",
-        top: 200,
-    },
-    signupButton: {
-        width: "100%",
-        height: 70,
-        backgroundColor: colours.secondary,
-        justifyContent: "center",
+        alignItems: "center"
     },
     buttonText: {
+        fontSize: 20,
         color: "white",
-        textAlign: "center",
         textTransform: "uppercase",
     },
+    loginButton: {
+        backgroundColor: colours.primary,
+    },
+    logo: {
+        top: "20%",
+        width: 195,
+        height: 195,
+    },
+    signupButton: {
+        backgroundColor: colours.secondary,
+    },
+    top: {
+        flex: 1
+    }
+
 });
