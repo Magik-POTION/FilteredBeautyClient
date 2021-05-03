@@ -4,60 +4,41 @@ import {
     StyleSheet,
     Image,
     Text,
-    Alert,
     TouchableOpacity,
     TextInput
 } from 'react-native';
-import {
-    useForm,
-    Controller
-} from 'react-hook-form';
+import { Formik } from 'formik';
 
 import colours from "../../config/colours";
 
 function LoginScreen(props) {
-    const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
 
     return (
         <View style={styles.background}>
-            <Image style={styles.logo} source={require("../../assets/logo.png")} />
-            <View>
-                <Controller
-                    control = {control}
-                    render = { ({ field: { onChange, onBlur, value } }) => (
-                        <TextInput 
-                            style={styles.input}
-                            onBlur={onBlur}
-                            onChangeText={value => onChange(value)}
-                            value={value}
+            <Formik
+                intialValues={{ username: '', password: ''}}
+                onSubmit={(values) => {
+                    console.log(values);
+                }}
+            >
+                {(props) => (
+                    <View>
+                        <TextInput
+                            placeholder="email@email.com"
+                            onChangeText={props.handleChange('username')}
+                            value={props.values.username}
                         />
-                    )}
-                    name="email"
-                    rules={{ required: true}}
-                    defaultValue=""
-                />
-                {errors.email && <Text>This is required.</Text>}
-
-                <Controller
-                    control = {control}
-                    render = { ({ field: { onChange, onBlur, value } }) => (
-                        <TextInput 
-                            style={styles.input}
-                            onBlur={onBlur}
-                            onChangeText={value => onChange(value)}
-                            value={value}
+                        <TextInput
+                            placeholder="password"
+                            onChangeText={props.handleChange('password')}
+                            value={props.values.password}
                         />
-                    )}
-                    name="password"
-                    rules={{ required: true}}
-                    defaultValue=""
-                />
-                {errors.password && <Text>This is required.</Text>}
-            </View>
-            <TouchableOpacity style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
+                        <TouchableOpacity style={styles.loginButton} onPress={() => props.handleSubmit}>
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            </Formik>
         </View>
     );
 }
