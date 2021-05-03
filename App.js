@@ -1,14 +1,8 @@
 import React from "react";
-import { 
-    Alert, 
-    StatusBar,
-    View 
-} from "react-native";
-// import Navigation from "./src/navigations/Navigation";
+import { Alert, StatusBar, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import AppController from "./src/controllers/AppController";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
-import LoginScreen from "./src/screens/LoginScreen";
+import Navigation from "./src/navigations/Navigation";
 
 export default App = () => {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -38,5 +32,5 @@ export default App = () => {
         load();
     }, []);
 
-    return isLoading ? <AppLoading /> : <LoginScreen />;
+    return isLoading ? <AppLoading /> : <Navigation />;
 };

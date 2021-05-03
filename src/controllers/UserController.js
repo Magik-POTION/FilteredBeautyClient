@@ -61,6 +61,22 @@ export default class UserController {
     }
 
     /**
+     * Signs ups a new user.
+     * @param {String} email
+     * @param {String} password
+     */
+    async signUp(email, password) {
+        // Removes whitespace from email.
+        let trimmedEmail = email.trim();
+
+        // Attempt to sign in user
+        let user = await firebaseAuthService.signUp(trimmedEmail, password);
+
+        // If user is found, updates the UserModel with the data.
+        this.setUserProperties(user);
+    }
+
+    /**
      * Signs out the current user and signs them in with an anonymous account.
      */
     async signOut() {
