@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     TextInput,
     Alert,
+    KeyboardAvoidingView,
 } from "react-native";
 
 import colours from "../../config/colours";
@@ -34,7 +35,7 @@ export default function LoginScreen() {
                     source={require("../../assets/logo.png")}
                 />
             </View>
-            <View style={styles.middle}>
+            <KeyboardAvoidingView style={styles.middle} behavior="padding">
                 <TextInput
                     style={styles.textInput}
                     placeholder="email@email.com"
@@ -48,7 +49,7 @@ export default function LoginScreen() {
                     onChangeText={(value) => setPassword(value)}
                     value={password}
                 />
-            </View>
+            </KeyboardAvoidingView>
             <View style={styles.bottom}>
                 <TouchableOpacity
                     style={[styles.button, styles.loginButton]}

@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     TextInput,
     Alert,
+    KeyboardAvoidingView
 } from "react-native";
 
 import colours from "../../config/colours";
@@ -35,7 +36,7 @@ export default function SignupScreen() {
                     source={require("../../assets/logo.png")}
                 />
             </View>
-            <View style={styles.middle}>
+            <KeyboardAvoidingView style={styles.middle} behavior="padding">
                 <TextInput
                     style={styles.textInput}
                     placeholder="email@email.com"
@@ -56,7 +57,7 @@ export default function SignupScreen() {
                     value={confirmation}
                     onChangeText={(value) => setConfirmation(value)}
                 />
-            </View>
+            </KeyboardAvoidingView>
             <View style={styles.bottom}>
                 <TouchableOpacity
                     style={[styles.button, styles.signupButton]}
