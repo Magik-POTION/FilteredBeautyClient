@@ -2,6 +2,7 @@ import AppModel from "../models/AppModel";
 import UserController from "../controllers/UserController";
 import FavouritesController from "./FavouritesController";
 import HistoryController from "./HistoryController";
+import SkinProfileController from "./SkinProfileController";
 
 /**
  * A Controller that contains the logic to manage the app model.
@@ -17,13 +18,23 @@ class AppController {
             AppModel.favouritesModel
         );
         this.historyController = new HistoryController(AppModel.historyModel);
+        this.skinProfileController = new SkinProfileController(
+            AppModel.skinProfileModel
+        );
     }
 
     // Loads app assets.
     async load() {
         await this.userController.load();
-        await this.favouritesController.load();
-        await this.historyController.load();
+        await this.favouritesController.load(
+            this.userController.userModel.uid.getValue()
+        );
+        await this.historyController.load(
+            this.userController.userModel.uid.getValue()
+        );
+        await this.skinProfileModel.load(
+            this.userController.userModel.uid.getValue()
+        );
     }
 }
 

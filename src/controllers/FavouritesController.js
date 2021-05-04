@@ -16,42 +16,54 @@ export default class FavouritesController {
 
     /**
      * Fetches favourites from database and updates the model.
+     * @param {String} uid
      */
-    async load() {
-        // TODO: call firestore service and converts data to object instances
-        // and stores them in the model.
+    async load(uid) {
+        // Fetch array from firestore.
+        let favouritesData = await firebaseFirestoreService.getFavourites(uid);
+
+        // maps data elements to class instances.
+        let favouritesParsed = favouritesData.map(
+            (product) => new Product(product)
+        );
+
+        // publishes data to Observable.
+        this.favouritesModel.products.next(favouritesParsed);
     }
 
     /**
-     * Takes in a product and adds them to favourites.
+     * Adds a product to the user's favourites.
+     * @param {String} uid
      * @param {Product} product
      */
-    async addProduct(product) {
+    async addProduct(uid, product) {
+        // adds product to firestore
+        await firebaseFirestoreService.addFavourite(uid, product);
+
         // adds product to list locallly
-        let productList = this.favouritesModel.products.getValue().push(product);
+        let productList = this.favouritesModel.products
+            .getValue()
+            .push(product);
         // publish the new list of products
         this.favouritesModel.products.next(productList);
-
-        // adds product to firestore
-        await firebaseFirestoreService.addFavourite(product);
     }
 
     /**
      * Takes in a product and removes it from favourites.
-     * @param {Product} product
+     * @param {Product} product to be added to favourites.
+     * @param {String} uid firebase uid.
      */
-    async removeProduct(product) {
+    async removeProduct(uid, product) {
+        // removes product from firestore
+        await firebaseFirestoreService.removeFavourite(uid, product);
+
         let productList = this.favouritesModel.getValue();
 
-        // TODO: Doesn't work until product schema is done.
         let filteredList = productList.filter(
             (element) => product.id != element.id
         );
 
         // Updates model with removed product.
         this.favouritesModel.products.next(filteredList);
-
-        // removes product from firestore
-        await firebaseFirestoreService.removeFavourite(product);
     }
 }

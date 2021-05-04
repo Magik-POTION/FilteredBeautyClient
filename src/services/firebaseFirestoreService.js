@@ -91,10 +91,10 @@ export default class firebaseFirestoreService {
     /**
      * Updates user's skin profile.
      * @param {String} uid
-     * @param {*} skinProfile  // TODO: Reference a SkinProfile Class
+     * @param {*} skinProfile on object containing skin profile data.
      */
     static async updateSkingProfile(uid, skinProfile) {
         let docRef = firestore.collection("skinprofile").doc(uid);
-        // await docRef.update(skinProfile.getProperties()); TODO: uncomment when SkinProfile Class is created.
+        await docRef.update(skinProfile);
     }
 }
