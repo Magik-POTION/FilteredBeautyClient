@@ -114,4 +114,12 @@ export default class FirebaseService {
         const IdToken = await user.getIdToken();
         return IdToken;
     };
+
+    /**
+     * Sends an email to reset user's password.
+     * @param {String} email
+     */
+    static resetPassword = async (email) => {
+        firebase.auth().sendPasswordResetEmail(email);
+    };
 }

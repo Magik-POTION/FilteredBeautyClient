@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, StatusBar, View } from "react-native";
+import { Alert, StatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
 import AppController from "./src/controllers/AppController";
 import Navigation from "./src/navigations/Navigation";
