@@ -27,13 +27,13 @@ class AppController {
     async load() {
         await this.userController.load();
         await this.favouritesController.load(
-            this.userController.userModel.uid.getValue()
+            AppModel.userModel.uid.getValue()
         );
         await this.historyController.load(
-            this.userController.userModel.uid.getValue()
+            AppModel.userModel.uid.getValue()
         );
-        await this.skinProfileModel.load(
-            this.userController.userModel.uid.getValue()
+        await this.skinProfileController.load(
+            AppModel.userModel.uid.getValue()
         );
     }
 }
