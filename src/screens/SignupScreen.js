@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     TextInput,
     Alert,
+    KeyboardAvoidingView
 } from "react-native";
 
 import colours from "../../config/colours";
@@ -29,36 +30,42 @@ export default function SignupScreen() {
 
     return (
         <View style={styles.background}>
-            <Image
-                style={styles.logo}
-                source={require("../../assets/logo.png")}
-            />
-            <TextInput
-                style={styles.textInputA}
-                placeholder="email@email.com"
-                value={email}
-                onChangeText={(value) => setEmail(value)}
-            />
-            <TextInput
-                style={styles.textInputB}
-                secureTextEntry={true}
-                placeholder="password"
-                onChangeText={(value) => setPassword(value)}
-                value={password}
-            />
-            <TextInput
-                style={styles.textInputC}
-                secureTextEntry={true}
-                placeholder="password confirmation"
-                value={confirmation}
-                onChangeText={(value) => setConfirmation(value)}
-            />
-            <TouchableOpacity
-                style={styles.signupButton}
-                onPress={handleSubmitButton}
-            >
-                <Text style={styles.buttonText}>Sign up</Text>
-            </TouchableOpacity>
+            <View style={styles.top}>
+                <Image
+                    style={styles.logo}
+                    source={require("../../assets/logo.png")}
+                />
+            </View>
+            <KeyboardAvoidingView style={styles.middle} behavior="padding">
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="email@email.com"
+                    value={email}
+                    onChangeText={(value) => setEmail(value)}
+                />
+                <TextInput
+                    style={styles.textInput}
+                    secureTextEntry={true}
+                    placeholder="password"
+                    onChangeText={(value) => setPassword(value)}
+                    value={password}
+                />
+                <TextInput
+                    style={styles.textInput}
+                    secureTextEntry={true}
+                    placeholder="password confirmation"
+                    value={confirmation}
+                    onChangeText={(value) => setConfirmation(value)}
+                />
+            </KeyboardAvoidingView>
+            <View style={styles.bottom}>
+                <TouchableOpacity
+                    style={[styles.button, styles.signupButton]}
+                    onPress={handleSubmitButton}
+                >
+                    <Text style={styles.buttonText}>Sign up</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -67,54 +74,46 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         backgroundColor: colours.background,
-        justifyContent: "flex-end",
         alignItems: "center",
     },
+    bottom: {
+        flex: 1,
+        width: "100%",
+        height: "30%",
+        justifyContent: "flex-end"
+    },
+    button: {
+        width: "100%",
+        height: 70,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     buttonText: {
+        fontSize: 20,
         color: "white",
-        textAlign: "center",
         textTransform: "uppercase",
     },
     logo: {
+        top: "20%",
         width: 195,
         height: 195,
-        position: "absolute",
-        top: 120,
+    },
+    middle: {
+        top: "10%",
+        flex: 2,
+        width: "80%"
     },
     signupButton: {
-        width: "100%",
-        height: 70,
         backgroundColor: colours.secondary,
-        justifyContent: "center",
     },
-    textInputA: {
-        position: "absolute",
-        top: 350,
-        marginTop: 20,
-        width: "80%",
-        height: 40,
+    textInput: {
+        margin: "2%",
+        padding: "5%",
         textAlign: "center",
         backgroundColor: colours.grey,
         borderRadius: 50,
     },
-    textInputB: {
-        position: "absolute",
-        top: 400,
-        marginTop: 20,
-        width: "80%",
-        height: 40,
-        textAlign: "center",
-        backgroundColor: colours.grey,
-        borderRadius: 50,
-    },
-    textInputC: {
-        position: "absolute",
-        top: 450,
-        marginTop: 20,
-        width: "80%",
-        height: 40,
-        textAlign: "center",
-        backgroundColor: colours.grey,
-        borderRadius: 50,
-    },
+    top: {
+        flex: 1
+    }
 });
