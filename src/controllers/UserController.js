@@ -96,5 +96,14 @@ export default class UserController {
             this.userModel.displayName.next(firebaseUser.displayName);
         firebaseUser.photoURL != null &&
             this.userModel.photoURL.next(firebaseUser.photoURL);
+        this.userModel.email.next(firebaseUser.email)
+    }
+
+    /**
+     * Resets password for given email.
+     * @param {String} email
+     */
+    async sendEmailPasswordReset(email) {
+        firebaseAuthService.resetPassword(email);
     }
 }

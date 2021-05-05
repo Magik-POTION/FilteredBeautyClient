@@ -3,6 +3,7 @@ import UserController from "../controllers/UserController";
 import FavouritesController from "./FavouritesController";
 import HistoryController from "./HistoryController";
 import SkinProfileController from "./SkinProfileController";
+import SearchController from "./SearchController";
 
 /**
  * A Controller that contains the logic to manage the app model.
@@ -21,20 +22,18 @@ class AppController {
         this.skinProfileController = new SkinProfileController(
             AppModel.skinProfileModel
         );
+        this.searchController = new SearchController(AppModel.searchModel);
     }
 
     // Loads app assets.
     async load() {
         await this.userController.load();
-        await this.favouritesController.load(
-            AppModel.userModel.uid.getValue()
-        );
-        await this.historyController.load(
-            AppModel.userModel.uid.getValue()
-        );
+        await this.favouritesController.load(AppModel.userModel.uid.getValue());
+        await this.historyController.load(AppModel.userModel.uid.getValue());
         await this.skinProfileController.load(
             AppModel.userModel.uid.getValue()
         );
+        await this.searchController.load();
     }
 }
 

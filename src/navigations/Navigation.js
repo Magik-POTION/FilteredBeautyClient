@@ -1,102 +1,63 @@
 import "react-native-gesture-handler";
 import * as React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
+import AuthenticationScreen from "../screens/AuthenticationScreen";
 import LoginScreen from "../screens/LoginScreen";
-import WelcomeScreen from "../screens/WelcomeScreen";
 import SignupScreen from "../screens/SignupScreen";
+import FavouritesScreen from "../screens/FavouritesScreen";
+import HistoryScreen from "../screens/HistoryScreen";
+import ProductSearchScreen from "../screens/ProductSearchScreen";
+import DetailsScreen from "../screens/DetailsScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
-function HomeScreen({ navigation }) {
+function TabNavigation() {
+    const Tab = createBottomTabNavigator();
+
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to next screen"
-                /* navigation.push() can be used to add the screen onto the navigation stack */
-                /* navigation.goBack() can be used to go to previous screen */
-                /* navigation.popToTop() goes back to the first screen in the stack*/
-                onPress={() =>
-                    /* Passing params goes inside navigate */
-                    navigation.navigate("Details", {
-                        userName: "Trae",
-                        otherParam: "learning routing",
-                    })
-                }
+        <Tab.Navigator>
+            <Tab.Screen
+                name="Search"
+                component={ProductSearchScreen}
+                options={{ title: "Search" }}
             />
-        </View>
+            <Tab.Screen
+                name="Favourites"
+                component={FavouritesScreen}
+                options={{ title: "Favourites" }}
+            />
+            <Tab.Screen
+                name="History"
+                component={HistoryScreen}
+                options={{ title: "History" }}
+            />
+        </Tab.Navigator>
     );
 }
-
-function DetailsScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Details Screen</Text>
-            /* Fetching param from the other screen */ /* Avoid passing params
-            that is used by multiple screen, should be in GLOBAL store */
-            <Text>username: {JSON.stringify(userName)}</Text>
-            <Text>otherparam: {JSON.stringify(otherParam)}</Text>
-        </View>
-    );
-}
-function SkinProfileScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Skin Profile Screen</Text>
-        </View>
-    );
-}
-function CheckoutScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Checkout Screen</Text>
-        </View>
-    );
-}
-function SettingScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Setting Screen</Text>
-        </View>
-    );
-}
-function ProfileScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Profile Screen</Text>
-        </View>
-    );
-}
-function HistoryScreen({ navigation }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>History Screen</Text>
-        </View>
-    );
-}
-const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
+    const Stack = createNativeStackNavigator();
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name="Welcome"
-                    component={WelcomeScreen}
-                    options={{ title: "Welcome" }}
+                    name="Home"
+                    component={TabNavigation}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen
+                    name="Authentication"
+                    component={AuthenticationScreen}
+                    options={{ title: "Authentication" }}
+                />
+                <Stack.Screen
+                    name="Signup"
+                    component={SignupScreen}
+                    options={{ title: "Signup" }}
                 />
                 <Stack.Screen
                     name="Login"
@@ -104,34 +65,9 @@ export default function Navigation() {
                     options={{ title: "Login" }}
                 />
                 <Stack.Screen
-                    name="SignUp"
-                    component={SignupScreen}
-                    options={{ title: "SignUp" }}
-                />
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{ title: "Home" }}
-                />
-                <Stack.Screen
                     name="Details"
                     component={DetailsScreen}
                     options={{ title: "Details" }}
-                />
-                <Stack.Screen
-                    name="SkinProfile"
-                    component={SkinProfileScreen}
-                    options={{ title: "SkinProfile" }}
-                />
-                <Stack.Screen
-                    name="Checkout"
-                    component={CheckoutScreen}
-                    options={{ title: "Checkout" }}
-                />
-                <Stack.Screen
-                    name="Setting"
-                    component={SettingScreen}
-                    options={{ title: "Setting" }}
                 />
                 <Stack.Screen
                     name="Profile"
@@ -139,9 +75,9 @@ export default function Navigation() {
                     options={{ title: "Profile" }}
                 />
                 <Stack.Screen
-                    name="History"
-                    component={HistoryScreen}
-                    options={{ title: "History" }}
+                    name="Settings"
+                    component={SettingsScreen}
+                    options={{ title: "Settings" }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

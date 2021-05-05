@@ -34,4 +34,11 @@ export default class SkinProfileController {
         await firebaseFirestoreService.updateSkingProfile(skinCareProfile);
         // TODO: Binds skincare profile to model.
     }
+
+    /**
+     * Sets default skinprofile parameters.
+     */
+    reset() {
+        // TODO: Set skin profile parameters.
+    }
 }

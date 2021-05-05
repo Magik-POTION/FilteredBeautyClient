@@ -11,5 +11,6 @@ export default class UserModel {
         this.photoURL = new BehaviorSubject("");
         this.isAnonymous = new BehaviorSubject(true);
         this.displayName = new BehaviorSubject("");
+        this.email = new BehaviorSubject("");
     }
 }

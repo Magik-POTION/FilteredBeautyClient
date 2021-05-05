@@ -1,111 +1,87 @@
 import React from "react";
-import {
-    View,
-    StyleSheet,
-    Image,
-    Text,
-    TouchableOpacity,
-    TextInput,
-    Alert,
-    KeyboardAvoidingView,
-} from "react-native";
+import { Dimensions } from "react-native";
+import { View, Image, Alert, KeyboardAvoidingView } from "react-native";
+import { Button, Input, Icon } from "react-native-elements";
 
 import colours from "../../config/colours";
 
 import AppController from "../controllers/AppController";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [passwordHidden, setPasswordHidden] = React.useState(true);
 
     async function handleSubmit() {
         try {
             await AppController.userController.signIn(email, password);
-            console.log("log in successfull")
+            navigation.navigate("Home");
         } catch (error) {
             Alert.alert("Log In Error", error.message);
         }
     }
 
     return (
-        <View style={styles.background}>
-            <View style={styles.top}>
+        <View
+            style={{
+                flex: 1,
+                backgroundColor: colours.background,
+            }}
+        >
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
                 <Image
-                    style={styles.logo}
+                    style={{
+                        width: Dimensions.get("window").width * 0.5,
+                        height: Dimensions.get("window").width * 0.5,
+                    }}
                     source={require("../../assets/logo.png")}
                 />
             </View>
-            <KeyboardAvoidingView style={styles.middle} behavior="padding">
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="email@email.com"
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+                <Input
+                    style={{ backgroundColor: colours.grey }}
+                    label={"EMAIL"}
+                    placeholder={"email@provider.com"}
                     value={email}
                     onChangeText={(value) => setEmail(value)}
+                    autoCapitalize={"none"}
                 />
-                <TextInput
-                    style={styles.textInput}
-                    secureTextEntry={true}
-                    placeholder="password"
-                    onChangeText={(value) => setPassword(value)}
+                <Input
+                    style={{ backgroundColor: colours.grey }}
+                    label={"PASSWORD"}
+                    placeholder={"MyPassword"}
                     value={password}
+                    onChangeText={(value) => setPassword(value)}
+                    secureTextEntry={passwordHidden}
+                    rightIcon={
+                        <Icon
+                            type="material"
+                            name={
+                                passwordHidden ? "visibility" : "visibility-off"
+                            }
+                            onPress={() => setPasswordHidden(!passwordHidden)}
+                        />
+                    }
                 />
             </KeyboardAvoidingView>
-            <View style={styles.bottom}>
-                <TouchableOpacity
-                    style={[styles.button, styles.loginButton]}
-                    onPress={handleSubmit}
-                >
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-            </View>
+            <Button
+                containerStyle={{ margin: 16 }}
+                buttonStyle={{
+                    backgroundColor: colours.primary,
+                }}
+                onPress={handleSubmit}
+                titleStyle={{
+                    fontSize: 20,
+                    color: "white",
+                }}
+                title={"LOG IN"}
+            />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        backgroundColor: colours.background,
-        alignItems: "center",
-    },
-    bottom: {
-        flex: 1,
-        width: "100%",
-        height: "30%",
-        justifyContent: "flex-end"
-    },
-    button: {
-        width: "100%",
-        height: 70,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    buttonText: {
-        fontSize: 20,
-        color: "white",
-        textTransform: "uppercase",
-    },
-    loginButton: {
-        backgroundColor: colours.primary,
-    },
-    logo: {
-        top: "20%",
-        width: 195,
-        height: 195,
-    },
-    middle: {
-        top: "10%",
-        flex: 2,
-        width: "80%"
-    },
-    textInput: {
-        margin: "2%",
-        padding: "5%",
-        textAlign: "center",
-        backgroundColor: colours.grey,
-        borderRadius: 50,
-    },
-    top: {
-        flex: 1
-    }
-});
