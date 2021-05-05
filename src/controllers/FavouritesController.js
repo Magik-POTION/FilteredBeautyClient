@@ -16,7 +16,7 @@ export default class FavouritesController {
 
     /**
      * Fetches favourites from database and updates the model.
-     * @param {String} uid
+     * @param {Number} uid
      */
     async load(uid) {
         // Fetch array from firestore.
@@ -33,37 +33,40 @@ export default class FavouritesController {
 
     /**
      * Adds a product to the user's favourites.
-     * @param {String} uid
+     * @param {Number} uid
      * @param {Product} product
      */
     async addProduct(uid, product) {
         // adds product to firestore
-        await firebaseFirestoreService.addFavourite(uid, product);
+        // await firebaseFirestoreService.addFavourite(uid, product);
 
         // adds product to list locallly
-        let productList = this.favouritesModel.products
-            .getValue()
-            .push(product);
+        let productList = [product].concat(
+            this.favouritesModel.products.getValue()
+        );
+
         // publish the new list of products
         this.favouritesModel.products.next(productList);
     }
 
     /**
      * Takes in a product and removes it from favourites.
+     * @param {Number} uid firebase uid.
      * @param {Product} product to be added to favourites.
-     * @param {String} uid firebase uid.
      */
     async removeProduct(uid, product) {
         // removes product from firestore
-        await firebaseFirestoreService.removeFavourite(uid, product);
-
-        let productList = this.favouritesModel.getValue();
-
-        let filteredList = productList.filter(
+        // await firebaseFirestoreService.removeFavourite(uid, product)
+        let oldList = this.favouritesModel.products.getValue();
+        let filteredList = oldList.filter(
             (element) => product.id != element.id
         );
 
         // Updates model with removed product.
         this.favouritesModel.products.next(filteredList);
+    }
+
+    reset() {
+        this.favouritesModel.products.next([]);
     }
 }

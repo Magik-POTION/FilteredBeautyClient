@@ -31,7 +31,7 @@ export default class firebaseFirestoreService {
             .doc(uid)
             .collection("products")
             .doc(product.id);
-        await documentRef.set(product.getProperties());
+        await documentRef.set(product);
     }
 
     /**
@@ -73,7 +73,7 @@ export default class firebaseFirestoreService {
             .collection("history")
             .doc(uid)
             .collection("products")
-            .doc(product.id);
+            .doc(product);
         await ref.set(product.getProperties());
     }
 

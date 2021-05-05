@@ -1,4 +1,7 @@
 import ProductsModel from "../models/ProductsModel";
+import makeupApiService from "../services/makeupApiService";
+import Product from "../controllers/Product";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class SearchController {
     /**
@@ -10,10 +13,12 @@ export default class SearchController {
     }
 
     /**
-     * fetches all products and saves them in the searchModel.
+     * Fetches all products and saves them in the searchModel.
      */
     async load() {
-        // TODO
+        let data = await makeupApiService.getAllProducts();
+        let parsedData = data.map((product) => new Product(product));
+        this.searchModel.products.next(parsedData);
     }
 
     /**

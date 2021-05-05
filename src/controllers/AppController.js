@@ -4,6 +4,7 @@ import FavouritesController from "./FavouritesController";
 import HistoryController from "./HistoryController";
 import SkinProfileController from "./SkinProfileController";
 import SearchController from "./SearchController";
+import ProductDetailController from "./ProductDetailController";
 
 /**
  * A Controller that contains the logic to manage the app model.
@@ -23,6 +24,9 @@ class AppController {
             AppModel.skinProfileModel
         );
         this.searchController = new SearchController(AppModel.searchModel);
+        this.productDetailController = new ProductDetailController(
+            AppModel.productDetailModel
+        );
     }
 
     // Loads app assets.

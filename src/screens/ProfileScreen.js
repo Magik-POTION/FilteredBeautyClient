@@ -11,6 +11,8 @@ export default function ProfileScreen() {
     const email = useObservable(AppModel.userModel.email);
 
     const handleLogoutOnPress = async () => {
+        AppController.favouritesController.reset();
+        AppController.historyController.reset();
         await AppController.userController.signOut();
         navigation.navigate("Home");
     };

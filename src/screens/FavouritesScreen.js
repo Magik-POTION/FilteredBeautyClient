@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, View } from "react-native";
-import { ListItem, Divider, Header, Icon } from "react-native-elements";
+import { ListItem, Divider, Header, Icon, Avatar } from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { useNavigation } from "@react-navigation/native";
@@ -10,16 +10,34 @@ export default function FavouritesScreen() {
     const navigation = useNavigation();
     const productList = useObservable(AppModel.favouritesModel.products);
 
-    const handleItemOnPress = (item) =>
-        navigation.navigate("Details", { item: item });
-
     // TODO: Add Favourites Icon
     function renderItem({ item }) {
         return (
-            <ListItem onPress={() => handleItemOnPress(item)}>
+            <ListItem
+                onPress={() => {
+                    AppController.productDetailController.selectItem(item);
+                    AppController.historyController.addProduct(
+                        AppModel.userModel.uid.getValue(),
+                        item
+                    );
+                    navigation.navigate("Details");
+                }}
+            >
+                <Avatar source={{ uri: item.image_link }} />
                 <ListItem.Content>
-                    <ListItem.Title>{item.id}</ListItem.Title>
+                    <ListItem.Title>{item.name}</ListItem.Title>
+                    <ListItem.Subtitle>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
+                <Icon
+                    type="material"
+                    name="favorite"
+                    onPress={() => {
+                        AppController.favouritesController.removeProduct(
+                            AppModel.userModel.uid.getValue(),
+                            item
+                        );
+                    }}
+                />
             </ListItem>
         );
     }
@@ -37,7 +55,10 @@ export default function FavouritesScreen() {
                         onPress={() => navigation.navigate("Settings")}
                     />
                 }
-                centerComponent={{ text: "FAVOURITES", style: { color: "white" } }}
+                centerComponent={{
+                    text: "FAVOURITES",
+                    style: { color: "white" },
+                }}
                 rightComponent={
                     <Icon
                         type="material"

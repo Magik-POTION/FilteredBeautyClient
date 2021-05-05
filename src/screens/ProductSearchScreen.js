@@ -6,6 +6,7 @@ import {
     SearchBar,
     Header,
     Icon,
+    Avatar,
 } from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
@@ -17,20 +18,29 @@ export default function ProductSearchScreen() {
     const productList = useObservable(AppModel.searchModel.products);
     const [search, setSearch] = useState("");
 
-    const handleItemOnPress = (item) =>
-        navigation.navigate("Details", { item: item });
-
     function renderItem({ item }) {
         return (
-            <ListItem onPress={() => handleItemOnPress(item)}>
+            <ListItem
+                onPress={() => {
+                    AppController.productDetailController.selectItem(item);
+                    AppController.historyController.addProduct(
+                        AppModel.userModel.uid.getValue(),
+                        item
+                    );
+                    navigation.navigate("Details");
+                }}
+            >
+                <Avatar source={{ uri: item.image_link }} />
                 <ListItem.Content>
-                    <ListItem.Title>{item.id}</ListItem.Title>
+                    <ListItem.Title>{item.name}</ListItem.Title>
+                    <ListItem.Subtitle>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
+                <Icon type="material" name="chevron-right" />
             </ListItem>
         );
     }
 
-    const keyExtractor = (item) => item.name;
+    const keyExtractor = (item) => item.id.toString();
 
     const handleSearchChange = (value) => {
         setSearch(value);

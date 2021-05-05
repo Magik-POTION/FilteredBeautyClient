@@ -5,7 +5,7 @@ import firebaseFirestoreService from "../services/firebaseFirestoreService";
 /**
  * Manages a ProductsModel as a collection of products of the user's history.
  */
-export default class FavouritesController {
+export default class HistoryController {
     /**
      *
      * @param {ProductsModel} historyModel represents the user's product history.
@@ -31,10 +31,20 @@ export default class FavouritesController {
      */
     async addProduct(uid, product) {
         // adds product to firestore
-        await firebaseFirestoreService.addHistory(uid, product);
+        // await firebaseFirestoreService.addHistory(uid, product);
+
         // adds product to list locallly
-        let productList = this.historyModel.products.getValue().push(product);
+        let productList = [product].concat(
+            this.historyModel.products.getValue()
+        );
+
+        console.lod(productList);
+
         // publish the new list of products
         this.historyModel.products.next(productList);
+    }
+
+    clear() {
+        this.historyModel.products.next([]);
     }
 }

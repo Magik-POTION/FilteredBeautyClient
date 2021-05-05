@@ -1,6 +1,7 @@
 import UserModel from "../models/UserModel";
 import ProductsModel from "../models/ProductsModel";
 import SkinProfileModel from "../models/SkinProfileModel";
+import ProductDetailModel from "../models/ProductDetailModel";
 import { BehaviorSubject } from "rxjs";
 
 /**
@@ -23,6 +24,7 @@ class AppModel {
         this.historyModel = new ProductsModel();
         this.searchModel = new ProductsModel();
         this.skinProfileModel = new SkinProfileModel();
+        this.productDetailModel = new ProductDetailModel();
     }
 }
 
