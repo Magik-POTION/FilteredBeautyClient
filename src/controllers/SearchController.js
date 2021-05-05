@@ -1,7 +1,7 @@
 import ProductsModel from "../models/ProductsModel";
 import makeupApiService from "../services/makeupApiService";
 import Product from "../controllers/Product";
-import filter from "../utils/filter";
+import SkinProfileHandler from "../utils/SkinProfileHandler";
 
 export default class SearchController {
     /**
@@ -19,7 +19,7 @@ export default class SearchController {
     async load() {
         let data = await makeupApiService.getAllProducts();
         this.allProducts = data.map((product) => new Product(product));
-        let processedList =  this.processProducts(this.allProducts)
+        let processedList = this.processProducts(this.allProducts);
         this.searchModel.products.next(processedList);
     }
 
@@ -28,13 +28,16 @@ export default class SearchController {
      * @param {String} name product name.
      */
     search(name) {
-        if (name.length > 0) {
+        if (name && name.length > 0) {
             let filteredList = this.allProducts.filter((product) =>
                 product.name.includes(name)
             );
+            filteredList = this.processProducts(filteredList);
             this.searchModel.products.next(filteredList);
         } else {
-            this.searchModel.products.next(this.processProducts(this.allProducts));
+            this.searchModel.products.next(
+                this.processProducts(this.allProducts)
+            );
         }
     }
 
@@ -43,8 +46,6 @@ export default class SearchController {
      * @param {Array} products array of products.
      */
     processProducts(products) {
-        // TODO: Filter Products Here
-
-        return products;
+        return SkinProfileHandler.filter(products);
     }
 }

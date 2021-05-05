@@ -38,6 +38,15 @@ class AppController {
             AppModel.userModel.uid.getValue()
         );
         await this.searchController.load();
+
+        AppModel.skinProfileModel.Dairy_Free.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.Gluten_Free.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.Hypoallergenic.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.Peanut_Free_Product.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.Sugar_Free.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.alcohol_free.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.oil_free.subscribe(() => this.searchController.search())
+        AppModel.skinProfileModel.silicone_free.subscribe(() => this.searchController.search())
     }
 }
 

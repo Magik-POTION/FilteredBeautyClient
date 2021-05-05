@@ -10,20 +10,18 @@ export default function ProfileScreen() {
     const navigation = useNavigation();
     const email = useObservable(AppModel.userModel.email);
     const isHypoAllergenic = useObservable(
-        AppModel.skinProfileModel.isHypoAllergenic
+        AppModel.skinProfileModel.Hypoallergenic
     );
-    const isDairyFree = useObservable(AppModel.skinProfileModel.isDairyFree);
-    const isGlutenFree = useObservable(AppModel.skinProfileModel.isGlutenFree);
+    const isDairyFree = useObservable(AppModel.skinProfileModel.Dairy_Free);
+    const isGlutenFree = useObservable(AppModel.skinProfileModel.Gluten_Free);
     const isPeanutFreeProduct = useObservable(
-        AppModel.skinProfileModel.isPeanutFreeProduct
+        AppModel.skinProfileModel.Peanut_Free_Product
     );
-    const isSugarFree = useObservable(AppModel.skinProfileModel.isSugarFree);
-    const isAlcohalFree = useObservable(
-        AppModel.skinProfileModel.isAlcohalFree
-    );
-    const isOilFree = useObservable(AppModel.skinProfileModel.isOilFree);
+    const isSugarFree = useObservable(AppModel.skinProfileModel.Sugar_Free);
+    const isAlcohalFree = useObservable(AppModel.skinProfileModel.alcohol_free);
+    const isOilFree = useObservable(AppModel.skinProfileModel.oil_free);
     const isSiliconeFree = useObservable(
-        AppModel.skinProfileModel.isSiliconeFree
+        AppModel.skinProfileModel.silicone_free
     );
 
     const handleLogoutOnPress = async () => {
@@ -59,49 +57,89 @@ export default function ProfileScreen() {
                     <ListItem.Content>
                         <ListItem.Title>Sensitive Skin</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isHypoAllergenic} onValueChange={(value) => handleSwitch("isHypoAllergenic", value)} />
+                    <Switch
+                        value={isHypoAllergenic}
+                        onValueChange={(value) =>
+                            handleSwitch("Hypoallergenic", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Oily Skin</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isOilFree} onValueChange={(value) => handleSwitch("isOilFree", value)}/>
+                    <Switch
+                        value={isOilFree}
+                        onValueChange={(value) =>
+                            handleSwitch("oil_free", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Dry Skin</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isAlcohalFree} onValueChange={(value) => handleSwitch("isAlcohalFree", value)}/>
+                    <Switch
+                        value={isAlcohalFree}
+                        onValueChange={(value) =>
+                            handleSwitch("alcohol_free", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Allergic to Dairy</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isDairyFree} onValueChange={(value) => handleSwitch("isDairyFree", value)}/>
+                    <Switch
+                        value={isDairyFree}
+                        onValueChange={(value) =>
+                            handleSwitch("Dairy_Free", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Allergic to Gluten</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isGlutenFree} onValueChange={(value) => handleSwitch("isGlutenFree", value)}/>
+                    <Switch
+                        value={isGlutenFree}
+                        onValueChange={(value) =>
+                            handleSwitch("Gluten_Free", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Allergic to Peanuts</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isPeanutFreeProduct} onValueChange={(value) => handleSwitch("isPeanutFreeProduct", value)}/>
+                    <Switch
+                        value={isPeanutFreeProduct}
+                        onValueChange={(value) =>
+                            handleSwitch("Peanut_Free_Product", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Allergic to Sugar</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isSugarFree} onValueChange={(value) => handleSwitch("isSugarFree", value)}/>
+                    <Switch
+                        value={isSugarFree}
+                        onValueChange={(value) =>
+                            handleSwitch("Sugar_Free", value)
+                        }
+                    />
                 </ListItem>
                 <ListItem>
                     <ListItem.Content>
                         <ListItem.Title>Allergic to Silicone</ListItem.Title>
                     </ListItem.Content>
-                    <Switch value={isSiliconeFree} onValueChange={(value) => handleSwitch("isSiliconeFree", value)}/>
+                    <Switch
+                        value={isSiliconeFree}
+                        onValueChange={(value) =>
+                            handleSwitch("silicone_free", value)
+                        }
+                    />
                 </ListItem>
             </ScrollView>
             <Divider />
