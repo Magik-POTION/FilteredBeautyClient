@@ -38,13 +38,11 @@ export default class HistoryController {
             this.historyModel.products.getValue()
         );
 
-        console.lod(productList);
-
         // publish the new list of products
         this.historyModel.products.next(productList);
     }
 
-    clear() {
+    reset() {
         this.historyModel.products.next([]);
     }
 }

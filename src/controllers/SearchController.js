@@ -10,6 +10,7 @@ export default class SearchController {
      */
     constructor(searchModel) {
         this.searchModel = searchModel;
+        this.allProducts = [];
     }
 
     /**
@@ -17,15 +18,20 @@ export default class SearchController {
      */
     async load() {
         let data = await makeupApiService.getAllProducts();
-        let parsedData = data.map((product) => new Product(product));
-        this.searchModel.products.next(parsedData);
+        this.allProducts = data.map((product) => new Product(product));
+        // TODO: Filter Products
+        this.searchModel.products.next(this.allProducts);
     }
 
     /**
      * Searches for product by name
-     * @param {String} value product name.
+     * @param {String} name product name.
      */
-    search(value) {
-        // TODO: Filter searchModel
+    async search(name) {
+        // let parsedData = data.map((product) => new Product(product));
+        // let filteredList = parsedData.filter((product) =>
+        //     product.name.includes(value)
+        // );
+        // this.searchModel.products.next(filteredList);
     }
 }
