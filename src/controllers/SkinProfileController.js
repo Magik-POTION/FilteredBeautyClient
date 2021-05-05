@@ -22,7 +22,11 @@ export default class SkinProfileController {
         let skinProfileData = await firebaseFirestoreService.getSkinProfile(
             uid
         );
-        // TODO: Binds skincare profile to model.
+        if (skinProfileData) {
+            for (let property in skinProfileData) {
+                this.skinProfileModel[property].next(skinProfileData[property]);
+            }
+        }
     }
 
     /**
@@ -31,14 +35,24 @@ export default class SkinProfileController {
      * @param {*} skinCareProfile an object containing skinCareProfile data.
      */
     async updateSkinCareProfile(uid, skinCareProfile) {
-        await firebaseFirestoreService.updateSkingProfile(skinCareProfile);
-        // TODO: Binds skincare profile to model.
+        await firebaseFirestoreService.updateSkinProfile(uid, skinCareProfile);
+    }
+
+    /**
+     * Sets the value of the given name in the model.
+     * @param {String} name
+     * @param {Boolean} value
+     */
+    set(name, value) {
+        this.skinProfileModel[name].next(value);
     }
 
     /**
      * Sets default skinprofile parameters.
      */
     reset() {
-        // TODO: Set skin profile parameters.
+        for (let property in this.skinProfileModel) {
+            this.skinProfileModel[property].next(false);
+        }
     }
 }

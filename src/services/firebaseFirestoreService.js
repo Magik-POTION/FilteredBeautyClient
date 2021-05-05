@@ -93,7 +93,7 @@ export default class firebaseFirestoreService {
      * @param {String} uid
      * @param {*} skinProfile on object containing skin profile data.
      */
-    static async updateSkingProfile(uid, skinProfile) {
+    static async updateSkinProfile(uid, skinProfile) {
         let docRef = firestore.collection("skinprofile").doc(uid);
         await docRef.update(skinProfile);
     }
