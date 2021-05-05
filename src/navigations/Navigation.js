@@ -12,6 +12,7 @@ import ProductSearchScreen from "../screens/ProductSearchScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import { Icon } from "react-native-elements";
 
 function TabNavigation() {
     const Tab = createBottomTabNavigator();
@@ -21,17 +22,23 @@ function TabNavigation() {
             <Tab.Screen
                 name="Search"
                 component={ProductSearchScreen}
-                options={{ title: "Search" }}
+                options={{
+                    tabBarIcon: () => <Icon name="search" type="material" />,
+                }}
             />
             <Tab.Screen
                 name="Favourites"
                 component={FavouritesScreen}
-                options={{ title: "Favourites" }}
+                options={{
+                    tabBarIcon: () => <Icon name="favorite" type="material" />,
+                }}
             />
             <Tab.Screen
                 name="History"
                 component={HistoryScreen}
-                options={{ title: "History" }}
+                options={{
+                    tabBarIcon: () => <Icon name="history" type="material" />,
+                }}
             />
         </Tab.Navigator>
     );

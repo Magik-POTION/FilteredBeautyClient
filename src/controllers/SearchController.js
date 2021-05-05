@@ -1,7 +1,7 @@
 import ProductsModel from "../models/ProductsModel";
 import makeupApiService from "../services/makeupApiService";
 import Product from "../controllers/Product";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import filter from "../utils/filter";
 
 export default class SearchController {
     /**
@@ -19,19 +19,32 @@ export default class SearchController {
     async load() {
         let data = await makeupApiService.getAllProducts();
         this.allProducts = data.map((product) => new Product(product));
-        // TODO: Filter Products
-        this.searchModel.products.next(this.allProducts);
+        let processedList =  this.processProducts(this.allProducts)
+        this.searchModel.products.next(processedList);
     }
 
     /**
      * Searches for product by name
      * @param {String} name product name.
      */
-    async search(name) {
-        // let parsedData = data.map((product) => new Product(product));
-        // let filteredList = parsedData.filter((product) =>
-        //     product.name.includes(value)
-        // );
-        // this.searchModel.products.next(filteredList);
+    search(name) {
+        if (name.length > 0) {
+            let filteredList = this.allProducts.filter((product) =>
+                product.name.includes(name)
+            );
+            this.searchModel.products.next(filteredList);
+        } else {
+            this.searchModel.products.next(this.processProducts(this.allProducts));
+        }
+    }
+
+    /**
+     * Filteres out products based on skin profile.
+     * @param {Array} products array of products.
+     */
+    processProducts(products) {
+        // TODO: Filter Products Here
+
+        return products;
     }
 }
