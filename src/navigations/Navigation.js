@@ -13,6 +13,8 @@ import DetailsScreen from "../screens/DetailsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import { Icon } from "react-native-elements";
+import colours from "../../config/colours";
+
 
 function TabNavigation() {
     const Tab = createBottomTabNavigator();
