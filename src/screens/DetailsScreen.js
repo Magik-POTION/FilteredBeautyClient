@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Text, Image, Button, Icon, ListItem } from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
-import { Dimensions } from "react-native";
+import { Dimensions, Linking } from "react-native";
 import AppController from "../controllers/AppController";
 
 /**
@@ -31,7 +31,9 @@ export default function DetailsScreen() {
     }, []);
 
     function handleBuyButton() {
-        // TODO: Search for product on amazon
+        Linking.openURL(
+            `https://www.amazon.ca/s?k=${product.name}&linkCode=ll2&tag=ktruong-20&linkId=74f374a9657ac0e6ebb3489db542e821&language=en_CA&ref_=as_li_ss_tl`
+        );
     }
 
     async function handleFavouriteOnPress() {
