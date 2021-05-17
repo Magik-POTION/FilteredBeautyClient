@@ -5,6 +5,7 @@ import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { Dimensions, Linking } from "react-native";
 import AppController from "../controllers/AppController";
+import { ScrollView } from "react-native";
 
 /**
  * Shows the detail of a product
@@ -14,8 +15,8 @@ export default function DetailsScreen() {
     const [favourited, setFavourited] = React.useState(false);
 
     React.useEffect(() => {
-        const favouritesSubscription = AppModel.favouritesModel.products.subscribe(
-            (products) => {
+        const favouritesSubscription =
+            AppModel.favouritesModel.products.subscribe((products) => {
                 let found = products.find(
                     (favouritedProduct) => product.id == favouritedProduct.id
                 );
@@ -24,15 +25,14 @@ export default function DetailsScreen() {
                 } else {
                     setFavourited(false);
                 }
-            }
-        );
+            });
 
         return () => favouritesSubscription.unsubscribe();
     }, []);
 
     function handleBuyButton() {
         Linking.openURL(
-            `https://www.amazon.ca/s?k=${product.name}&linkCode=ll2&tag=ktruong-20&linkId=74f374a9657ac0e6ebb3489db542e821&language=en_CA&ref_=as_li_ss_tl`
+            `https://www.amazon.ca/s?k=${product.name} ${product.brand}&linkCode=ll2&tag=ktruong-20&linkId=74f374a9657ac0e6ebb3489db542e821&language=en_CA&ref_=as_li_ss_tl`
         );
     }
 
@@ -72,11 +72,14 @@ export default function DetailsScreen() {
             <Text>Category: {product.category}</Text>
             <Text>Type: {product.product_type}</Text>
             <Text>Tags: {product.tag_list}</Text>
-            <Text>Description: {product.description}</Text>
+            <Text>Description:</Text>
+            <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+
+                <Text>{product.description}</Text>
+            </ScrollView>
             <Button
                 containerStyle={{
                     margin: 16,
-                    flex: 1,
                     justifyContent: "flex-end",
                 }}
                 title={"PURCHASE"}
