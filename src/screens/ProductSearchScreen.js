@@ -77,7 +77,7 @@ export default function ProductSearchScreen() {
                 }
             />
             <SearchBar
-                placeholder={"Search Product By Name"}
+                placeholder={"Search Product By Name or Brand"}
                 onChangeText={handleSearchChange}
                 value={search}
             />

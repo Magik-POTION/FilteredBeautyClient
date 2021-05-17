@@ -24,13 +24,15 @@ export default class SearchController {
     }
 
     /**
-     * Searches for product by name
-     * @param {String} name product name.
+     * Searches for product
+     * @param {String} value value to search for.
      */
-    search(name) {
-        if (name && name.length > 0) {
-            let filteredList = this.allProducts.filter((product) =>
-                product.name.includes(name)
+    search(value) {
+        if (value && value.length > 0) {
+            let filteredList = this.allProducts.filter(
+                (product) =>
+                    product.name.includes(value) ||
+                    product.brand.includes(value)
             );
             filteredList = this.processProducts(filteredList);
             this.searchModel.products.next(filteredList);
