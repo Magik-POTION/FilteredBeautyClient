@@ -5,6 +5,7 @@ import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { useNavigation } from "@react-navigation/native";
 import AppController from "../controllers/AppController";
+import colours from "../../config/colours";
 
 export default function FavouritesScreen() {
     const navigation = useNavigation();
@@ -46,24 +47,25 @@ export default function FavouritesScreen() {
 
     return (
         <View style={{ flex: 1 }}>
-            <Header
+             <Header
+                backgroundColor = {colours.background}
                 leftComponent={
                     <Icon
                         type="material"
                         name="settings"
-                        color="white"
+                        color={colours.black}
                         onPress={() => navigation.navigate("Settings")}
                     />
                 }
                 centerComponent={{
                     text: "FAVOURITES",
-                    style: { color: "white" },
+                    style: { color: colours.black },
                 }}
                 rightComponent={
                     <Icon
                         type="material"
                         name="person"
-                        color="white"
+                        color= {colours.black}
                         onPress={() => {
                             if (AppModel.userModel.isAnonymous) {
                                 navigation.navigate("Authentication");

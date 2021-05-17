@@ -12,6 +12,7 @@ import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { useNavigation } from "@react-navigation/native";
 import AppController from "../controllers/AppController";
+import colours from "../../config/colours";
 
 export default function ProductSearchScreen() {
     const navigation = useNavigation();
@@ -50,20 +51,21 @@ export default function ProductSearchScreen() {
     return (
         <View style={{ flex: 1 }}>
             <Header
+                backgroundColor = {colours.background}
                 leftComponent={
                     <Icon
                         type="material"
                         name="settings"
-                        color="white"
+                        color= {colours.black}
                         onPress={() => navigation.navigate("Settings")}
                     />
                 }
-                centerComponent={{ text: "SEARCH", style: { color: "white" } }}
+                centerComponent={{ text: "SEARCH", style: { color: colours.black} }}
                 rightComponent={
                     <Icon
                         type="material"
                         name="person"
-                        color="white"
+                        color= {colours.black}
                         onPress={() => {
                             if (AppModel.userModel.isAnonymous.getValue()) {
                                 navigation.navigate("Authentication");

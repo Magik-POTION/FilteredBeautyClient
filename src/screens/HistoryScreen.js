@@ -4,6 +4,7 @@ import { ListItem, Divider, Header, Icon, Avatar } from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { useNavigation } from "@react-navigation/native";
+import colours from "../../config/colours";
 
 export default function HistoryScreen() {
     const navigation = useNavigation();
@@ -36,20 +37,21 @@ export default function HistoryScreen() {
     return (
         <View style={{ flex: 1 }}>
             <Header
+                backgroundColor = {colours.background}
                 leftComponent={
                     <Icon
                         type="material"
                         name="settings"
-                        color="white"
+                        color={colours.black}
                         onPress={() => navigation.navigate("Settings")}
                     />
                 }
-                centerComponent={{ text: "HISTORY", style: { color: "white" } }}
+                centerComponent={{ text: "HISTORY", style: { color: colours.black } }}
                 rightComponent={
                     <Icon
                         type="material"
                         name="person"
-                        color="white"
+                        color={colours.black}
                         onPress={() => {
                             if (AppModel.userModel.isAnonymous) {
                                 navigation.navigate("Authentication");

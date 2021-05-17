@@ -50,7 +50,10 @@ export default function Navigation() {
     const Stack = createNativeStackNavigator();
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerTintColor: colours.black
+                }}>
                 <Stack.Screen
                     name="Home"
                     component={TabNavigation}
@@ -86,7 +89,8 @@ export default function Navigation() {
                 <Stack.Screen
                     name="Settings"
                     component={SettingsScreen}
-                    options={{ title: "Settings" }}
+                    options={{ 
+                        title: "Settings" }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
