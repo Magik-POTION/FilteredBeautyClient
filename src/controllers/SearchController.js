@@ -29,10 +29,13 @@ export default class SearchController {
      */
     search(value) {
         if (value && value.length > 0) {
+            let parsedValue = value.toLowerCase();
+
             let filteredList = this.allProducts.filter(
                 (product) =>
-                    product.name.includes(value) ||
-                    product.brand.includes(value)
+                    product.name.toLowerCase().includes(parsedValue) ||
+                    (product.brand &&
+                        product.brand.toLowerCase().includes(parsedValue))
             );
             filteredList = this.processProducts(filteredList);
             this.searchModel.products.next(filteredList);
