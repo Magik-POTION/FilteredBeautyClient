@@ -3,14 +3,26 @@ import { View, StyleSheet, Linking } from "react-native";
 import { Button } from "react-native-elements";
 import colours from "../../config/colours";
 
-
 export default function SettingsScreen() {
     // TODO: Add URLS BELOW
-    const handleTermsOnPress = () => Linking.openURL("https://drive.google.com/file/d/1sR4GdPrqIHiybjgRklNePtMPz8kqNTmI/view?usp=sharing");
-    const handlePrivacyOnPress = () => Linking.openURL("https://drive.google.com/file/d/1fhoRFD4ZLo6ZdE-DHTX0NEzZpuw6vaug/view?usp=sharing");
+    // const handleAboutUsOnPress = () => Linking.openURL("");
+    const handleTermsOnPress = () =>
+        Linking.openURL(
+            "https://drive.google.com/file/d/1sR4GdPrqIHiybjgRklNePtMPz8kqNTmI/view?usp=sharing"
+        );
+    const handlePrivacyOnPress = () =>
+        Linking.openURL(
+            "https://drive.google.com/file/d/1fhoRFD4ZLo6ZdE-DHTX0NEzZpuw6vaug/view?usp=sharing"
+        );
 
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
+            {/* <Button
+                containerStyle={styles.buttonContainer}
+                buttonStyle={styles.accentButton}
+                title={"ABOUT US"}
+                onPress={handleAboutUsOnPress}
+            /> */}
             <Button
                 containerStyle={styles.buttonContainer}
                 buttonStyle={styles.secondaryButton}
@@ -33,10 +45,9 @@ const styles = StyleSheet.create({
         marginVertical: 8,
     },
     accentButton: {
-        backgroundColor: colours.accent
+        backgroundColor: colours.accent,
     },
     secondaryButton: {
-        backgroundColor: colours.secondary
-    }
-
+        backgroundColor: colours.secondary,
+    },
 });
