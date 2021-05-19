@@ -1,10 +1,8 @@
 import React from "react";
 import { View, ScrollView, Image, Dimensions } from "react-native";
-import AppModel from "../models/AppModel";
 import useObservable from "../utils/useObservable";
 import { Button, Text, Divider, Switch, ListItem } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import AppController from "../controllers/AppController";
 import colours from "../../config/colours";
 
 export default function ProfileScreen() {
