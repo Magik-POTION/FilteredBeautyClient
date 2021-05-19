@@ -3,6 +3,7 @@ import { View, ScrollView, Image, Dimensions } from "react-native";
 import useObservable from "../utils/useObservable";
 import { Button, Text, Divider, Switch, ListItem } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import AppService from "../services/AppService";
 import colours from "../../config/colours";
 
 export default function ProfileScreen() {

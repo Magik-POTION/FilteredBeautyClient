@@ -20,7 +20,12 @@ function TabNavigation() {
     const Tab = createBottomTabNavigator();
 
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            tabBarOptions={{
+                activeTintColor: colours.primary,
+                inactiveTintColor: colours.black,
+            }}
+        >
             <Tab.Screen
                 name="Search"
                 component={ProductSearchScreen}
