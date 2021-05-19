@@ -17,6 +17,8 @@ export default class Product {
         this.tag_list = product.tag_list;
         this.api_featured_image = product.api_featured_image;
         this.product_colors = product.product_colors;
+
+        this.tag_list = this.tag_list.split(",").map((tag) => tag.trim());
     }
 
     getProperties() {
