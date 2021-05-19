@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, StatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
-import AppController from "./src/controllers/AppController";
+import AppService from "./src/services/AppService";
 import Navigation from "./src/navigations/Navigation";
 
 export default App = () => {
@@ -9,7 +9,7 @@ export default App = () => {
 
     async function load() {
         try {
-            await AppController.load();
+            await AppService.load();
             setIsLoading(false);
         } catch (error) {
             Alert.alert("Error Loading Assets", error.message, [

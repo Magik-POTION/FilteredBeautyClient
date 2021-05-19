@@ -1,11 +1,10 @@
 import React from "react";
-import { Dimensions } from "react-native";
-import { View, Image, Alert, KeyboardAvoidingView } from "react-native";
+import { View, Image, Alert, KeyboardAvoidingView, Dimensions } from "react-native";
 import { Button, Input, Icon } from "react-native-elements";
 
 import colours from "../../config/colours";
 
-import AppController from "../controllers/AppController";
+import AppService from "../services/AppService";
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = React.useState("");
@@ -14,7 +13,7 @@ export default function LoginScreen({ navigation }) {
 
     async function handleSubmit() {
         try {
-            await AppController.userController.signIn(email, password);
+            await AppService.userController.signIn(email, password);
             navigation.navigate("Home");
         } catch (error) {
             Alert.alert("Log In Error", error.message);

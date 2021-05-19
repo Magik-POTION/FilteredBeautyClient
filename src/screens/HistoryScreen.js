@@ -2,21 +2,21 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import { ListItem, Divider, Header, Icon, Avatar } from "react-native-elements";
 import useObservable from "../utils/useObservable";
-import AppModel from "../models/AppModel";
+import AppService from "../services/AppService";
 import { useNavigation } from "@react-navigation/native";
 import colours from "../../config/colours";
 
 export default function HistoryScreen() {
     const navigation = useNavigation();
-    const productList = useObservable(AppModel.historyModel.products);
+    const productList = useObservable(AppService.historyModel.products);
 
     function renderItem({ item }) {
         return (
             <ListItem
                 onPress={() => {
-                    AppController.productDetailController.selectItem(item);
-                    AppController.historyController.addProduct(
-                        AppModel.userModel.uid.getValue(),
+                    AppService.productDetailController.selectItem(item);
+                    AppService.historyController.addProduct(
+                        AppService.userModel.uid.getValue(),
                         item
                     );
                     navigation.navigate("Details");
@@ -53,7 +53,7 @@ export default function HistoryScreen() {
                         name="person"
                         color={colours.black}
                         onPress={() => {
-                            if (AppModel.userModel.isAnonymous) {
+                            if (AppService.userModel.isAnonymous) {
                                 navigation.navigate("Authentication");
                             } else {
                                 navigation.navigate("Profile");

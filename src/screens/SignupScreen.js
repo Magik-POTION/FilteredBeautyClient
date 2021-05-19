@@ -11,7 +11,7 @@ import {
 import { Button, Input, Icon } from "react-native-elements";
 
 import colours from "../../config/colours";
-import AppController from "../controllers/AppController";
+import AppService from "../services/AppService";
 
 export default function SignupScreen() {
     const navigation = useNavigation();
@@ -21,7 +21,7 @@ export default function SignupScreen() {
 
     const handleSubmit = async () => {
         try {
-            await AppController.userController.signUp(email, password);
+            await AppService.userController.signUp(email, password);
             navigation.navigate("Profile");
         } catch (error) {
             Alert.alert("Sign Up Error", error.message);
