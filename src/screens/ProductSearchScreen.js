@@ -9,23 +9,22 @@ import {
     Avatar,
 } from "react-native-elements";
 import useObservable from "../utils/useObservable";
-import AppModel from "../models/AppModel";
+import AppService from "../services/AppService";
 import { useNavigation } from "@react-navigation/native";
-import AppController from "../controllers/AppController";
 import colours from "../../config/colours";
 
 export default function ProductSearchScreen() {
     const navigation = useNavigation();
-    const productList = useObservable(AppModel.searchModel.products);
+    const productList = useObservable(AppService.searchModel.products);
     const [search, setSearch] = useState("");
 
     function renderItem({ item }) {
         return (
             <ListItem
                 onPress={() => {
-                    AppController.productDetailController.selectItem(item);
-                    AppController.historyController.addProduct(
-                        AppModel.userModel.uid.getValue(),
+                    AppService.productDetailController.selectItem(item);
+                    AppService.historyController.addProduct(
+                        AppService.userModel.uid.getValue(),
                         item
                     );
                     navigation.navigate("Details");
@@ -45,29 +44,32 @@ export default function ProductSearchScreen() {
 
     const handleSearchChange = (value) => {
         setSearch(value);
-        AppController.searchController.search(value);
+        AppService.searchController.search(value);
     };
 
     return (
         <View style={{ flex: 1 }}>
             <Header
-                backgroundColor = {colours.background}
+                backgroundColor={colours.background}
                 leftComponent={
                     <Icon
                         type="material"
                         name="settings"
-                        color= {colours.black}
+                        color={colours.black}
                         onPress={() => navigation.navigate("Settings")}
                     />
                 }
-                centerComponent={{ text: "SEARCH", style: { color: colours.black} }}
+                centerComponent={{
+                    text: "SEARCH",
+                    style: { color: colours.black },
+                }}
                 rightComponent={
                     <Icon
                         type="material"
                         name="person"
-                        color= {colours.black}
+                        color={colours.black}
                         onPress={() => {
-                            if (AppModel.userModel.isAnonymous.getValue()) {
+                            if (AppService.userModel.isAnonymous.getValue()) {
                                 navigation.navigate("Authentication");
                             } else {
                                 navigation.navigate("Profile");

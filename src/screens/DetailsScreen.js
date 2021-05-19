@@ -2,21 +2,23 @@ import React from "react";
 import { View } from "react-native";
 import { Text, Image, Button, Icon, ListItem } from "react-native-elements";
 import useObservable from "../utils/useObservable";
-import AppModel from "../models/AppModel";
+import AppService from "../services/AppService";
 import { Dimensions, Linking } from "react-native";
-import AppController from "../controllers/AppController";
+import AppService from "../controllers/AppService";
 import { ScrollView } from "react-native";
 
 /**
  * Shows the detail of a product
  */
 export default function DetailsScreen() {
-    const product = useObservable(AppModel.productDetailModel.selectedProduct);
+    const product = useObservable(
+        AppService.productDetailModel.selectedProduct
+    );
     const [favourited, setFavourited] = React.useState(false);
 
     React.useEffect(() => {
         const favouritesSubscription =
-            AppModel.favouritesModel.products.subscribe((products) => {
+            AppService.favouritesModel.products.subscribe((products) => {
                 let found = products.find(
                     (favouritedProduct) => product.id == favouritedProduct.id
                 );
@@ -38,13 +40,13 @@ export default function DetailsScreen() {
 
     async function handleFavouriteOnPress() {
         if (favourited) {
-            await AppController.favouritesController.removeProduct(
-                AppModel.userModel.uid.getValue(),
+            await AppService.favouritesController.removeProduct(
+                AppService.userModel.uid.getValue(),
                 product
             );
         } else {
-            await AppController.favouritesController.addProduct(
-                AppModel.userModel.uid.getValue(),
+            await AppService.favouritesController.addProduct(
+                AppService.userModel.uid.getValue(),
                 product
             );
         }
@@ -74,7 +76,6 @@ export default function DetailsScreen() {
             <Text>Tags: {product.tag_list}</Text>
             <Text>Description:</Text>
             <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
-
                 <Text>{product.description}</Text>
             </ScrollView>
             <Button

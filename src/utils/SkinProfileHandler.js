@@ -1,4 +1,4 @@
-import AppModel from "../models/AppModel";
+import AppService from "../services/AppServiceÎ";
 
 /**
  * Filtering Logic
@@ -12,35 +12,35 @@ export default class SkinProfileHandler {
     static filter(products) {
         let result = products;
 
-        if (AppModel.skinProfileModel.Dairy_Free.getValue())
+        if (AppService.skinProfileModel.Dairy_Free.getValue())
             result = products.filter((product) =>
                 product.tag_list.includes("Dairy Free")
             );
-        if (AppModel.skinProfileModel.Gluten_Free.getValue())
+        if (AppService.skinProfileModel.Gluten_Free.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("Gluten Free")
             );
-        if (AppModel.skinProfileModel.Hypoallergenic.getValue())
+        if (AppService.skinProfileModel.Hypoallergenic.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("Hypoallergenic")
             );
-        if (AppModel.skinProfileModel.Peanut_Free_Product.getValue())
+        if (AppService.skinProfileModel.Peanut_Free_Product.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("Peanut Free Product")
             );
-        if (AppModel.skinProfileModel.Sugar_Free.getValue())
+        if (AppService.skinProfileModel.Sugar_Free.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("Sugar Free")
             );
-        if (AppModel.skinProfileModel.alcohol_free.getValue())
+        if (AppService.skinProfileModel.alcohol_free.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("alcohol free")
             );
-        if (AppModel.skinProfileModel.oil_free.getValue())
+        if (AppService.skinProfileModel.oil_free.getValue())
             result = result.filter((product) =>
                 product.tag_list.includes("oil free")
             );
-        if (AppModel.skinProfileModel.silicone_free.getValue())
+        if (AppService.skinProfileModel.silicone_free.getValue())
             result.filter((product) => product.tag_list.includes("silicone free"));
 
         return result;

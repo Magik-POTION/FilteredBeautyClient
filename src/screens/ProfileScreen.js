@@ -1,33 +1,34 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import AppModel from "../models/AppModel";
+import AppService from "../services/AppService";
 import useObservable from "../utils/useObservable";
 import { Button, Text, Divider, Switch, ListItem } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import AppController from "../controllers/AppController";
 
 export default function ProfileScreen() {
     const navigation = useNavigation();
-    const email = useObservable(AppModel.userModel.email);
+    const email = useObservable(AppService.userModel.email);
     const isHypoAllergenic = useObservable(
-        AppModel.skinProfileModel.Hypoallergenic
+        AppService.skinProfileModel.Hypoallergenic
     );
-    const isDairyFree = useObservable(AppModel.skinProfileModel.Dairy_Free);
-    const isGlutenFree = useObservable(AppModel.skinProfileModel.Gluten_Free);
+    const isDairyFree = useObservable(AppService.skinProfileModel.Dairy_Free);
+    const isGlutenFree = useObservable(AppService.skinProfileModel.Gluten_Free);
     const isPeanutFreeProduct = useObservable(
-        AppModel.skinProfileModel.Peanut_Free_Product
+        AppService.skinProfileModel.Peanut_Free_Product
     );
-    const isSugarFree = useObservable(AppModel.skinProfileModel.Sugar_Free);
-    const isAlcohalFree = useObservable(AppModel.skinProfileModel.alcohol_free);
-    const isOilFree = useObservable(AppModel.skinProfileModel.oil_free);
+    const isSugarFree = useObservable(AppService.skinProfileModel.Sugar_Free);
+    const isAlcohalFree = useObservable(
+        AppService.skinProfileModel.alcohol_free
+    );
+    const isOilFree = useObservable(AppService.skinProfileModel.oil_free);
     const isSiliconeFree = useObservable(
-        AppModel.skinProfileModel.silicone_free
+        AppService.skinProfileModel.silicone_free
     );
 
     const handleLogoutOnPress = async () => {
-        AppController.favouritesController.reset();
-        AppController.historyController.reset();
-        await AppController.userController.signOut();
+        AppService.favouritesController.reset();
+        AppService.historyController.reset();
+        await AppService.userController.signOut();
         navigation.navigate("Home");
     };
 
@@ -36,7 +37,7 @@ export default function ProfileScreen() {
      * @param {String} name
      */
     function handleSwitch(name, value) {
-        AppController.skinProfileController.set(name, value);
+        AppService.skinProfileController.set(name, value);
     }
 
     return (
