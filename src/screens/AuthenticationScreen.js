@@ -8,7 +8,7 @@ export default function AuthenticationScreen() {
     const navigation = useNavigation();
 
     const handleLoginButton = () => navigation.navigate("Login");
-    const handleSignUpButton = () => navigation.navigate("SignUp");
+    const handleSignUpButton = () => navigation.navigate("Signup");
 
     return (
         <View
