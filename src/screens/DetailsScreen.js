@@ -1,11 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Text, Image, Button, Icon, ListItem } from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppModel from "../models/AppModel";
 import { Dimensions, Linking } from "react-native";
 import AppController from "../controllers/AppController";
 import { ScrollView } from "react-native";
+import colours from "../../config/colours";
 
 /**
  * Shows the detail of a product
@@ -68,19 +69,34 @@ export default function DetailsScreen() {
                     onPress={handleFavouriteOnPress}
                 />
             </ListItem>
-            <Text>Brand: {product.brand}</Text>
-            <Text>Category: {product.category}</Text>
-            <Text>Type: {product.product_type}</Text>
-            <Text>Tags: {product.tag_list}</Text>
-            <Text>Description:</Text>
-            <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+            
 
-                <Text>{product.description}</Text>
-            </ScrollView>
+            <View style={styles.topInfoContainer}>
+                <Text>Brand: {product.brand}</Text>
+                <Text>Category: {product.category}</Text>
+            </View>
+
+            <View style={styles.topInfoContainer}>
+                <Text>Type: {product.product_type}</Text>
+            </View>
+
+            <View style={{flex: 0.5}}>
+                <Text>Description:</Text>
+                <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+                    <Text>{product.description}</Text>
+                </ScrollView>
+            </View>
+            <View style={styles.tagContainer}>
+                <Text>Tags: {product.tag_list}</Text>
+            </View>
             <Button
                 containerStyle={{
                     margin: 16,
                     justifyContent: "flex-end",
+                    
+                }}
+                buttonStyle={{
+                    backgroundColor: colours.accent
                 }}
                 title={"PURCHASE"}
                 onPress={handleBuyButton}
@@ -88,3 +104,18 @@ export default function DetailsScreen() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    topInfoContainer: {
+        flex: 0.2, 
+        flexDirection: "row", 
+        justifyContent: "space-evenly"
+    },
+    tagContainer: {
+        flex: 0.2,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-end"
+    },
+});
+
