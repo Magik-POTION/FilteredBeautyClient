@@ -30,21 +30,21 @@ function TabNavigation() {
                 name="Search"
                 component={ProductSearchScreen}
                 options={{
-                    tabBarIcon: () => <Icon name="search" type="material" />,
+                    tabBarIcon: ({color}) => <Icon name="search" type="material"  color={color} />,
                 }}
             />
             <Tab.Screen
                 name="Favourites"
                 component={FavouritesScreen}
                 options={{
-                    tabBarIcon: () => <Icon name="favorite" type="material" />,
+                    tabBarIcon: ({color}) => <Icon name="favorite" type="material" color={color} />,
                 }}
             />
             <Tab.Screen
                 name="History"
                 component={HistoryScreen}
                 options={{
-                    tabBarIcon: () => <Icon name="history" type="material" />,
+                    tabBarIcon: ({color}) => <Icon name="history" type="material"  color={color} />,
                 }}
             />
         </Tab.Navigator>
