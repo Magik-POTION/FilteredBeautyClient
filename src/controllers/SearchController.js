@@ -1,4 +1,5 @@
 import ProductsModel from "../models/ProductsModel";
+import SkinProfileModel from "../models/SkinProfileModel";
 import makeupApiService from "../services/makeupApiService";
 import Product from "../controllers/Product";
 import SkinProfileHandler from "../utils/SkinProfileHandler";
@@ -6,10 +7,12 @@ import SkinProfileHandler from "../utils/SkinProfileHandler";
 export default class SearchController {
     /**
      *
-     * @param {ProductsModel} searchModel Takes in a product model to manage the search feature.
+     * @param {ProductsModel} searchModel
+     * @param {SkinProfileModel} skinProfileModel
      */
-    constructor(searchModel) {
+    constructor(searchModel, skinProfileModel) {
         this.searchModel = searchModel;
+        this.skinProfileModel = skinProfileModel;
         this.allProducts = [];
     }
 
@@ -51,6 +54,6 @@ export default class SearchController {
      * @param {Array} products array of products.
      */
     processProducts(products) {
-        return SkinProfileHandler.filter(products);
+        return SkinProfileHandler.filter(products, this.skinProfileModel);
     }
 }

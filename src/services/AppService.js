@@ -37,7 +37,10 @@ class AppService {
         this.skinProfileController = new SkinProfileController(
             this.skinProfileModel
         );
-        this.searchController = new SearchController(this.searchModel);
+        this.searchController = new SearchController(
+            this.searchModel,
+            this.skinProfileModel
+        );
         this.productDetailController = new ProductDetailController(
             this.productDetailModel
         );
