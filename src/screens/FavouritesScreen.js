@@ -66,7 +66,7 @@ export default function FavouritesScreen() {
                         name="person"
                         color= {colours.black}
                         onPress={() => {
-                            if (AppService.userModel.isAnonymous) {
+                            if (AppService.userModel.isAnonymous.getValue()) {
                                 navigation.navigate("Authentication");
                             } else {
                                 navigation.navigate("Profile");
