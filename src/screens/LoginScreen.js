@@ -1,6 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
-import { View, Image, Alert, KeyboardAvoidingView } from "react-native";
+import { View, Image, Alert, KeyboardAvoidingView, Dimensions } from "react-native";
 import { Button, Input, Icon } from "react-native-elements";
 
 import colours from "../../config/colours";

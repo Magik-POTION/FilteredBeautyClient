@@ -4,7 +4,6 @@ import { Button } from "react-native-elements";
 import colours from "../../config/colours";
 
 export default function SettingsScreen() {
-    // TODO: Add URLS BELOW
     // const handleAboutUsOnPress = () => Linking.openURL("");
     const handleTermsOnPress = () =>
         Linking.openURL(
