@@ -14,7 +14,7 @@ export default class Product {
         this.description = product.description;
         this.category = product.category;
         this.product_type = product.product_type;
-        this.tag_list = product.tag_list.split(",").map((tag) => tag.trim());
+        this.tag_list = product.tag_list;
         this.api_featured_image = product.api_featured_image;
         this.product_colors = product.product_colors;
     }
