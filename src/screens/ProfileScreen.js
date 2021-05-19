@@ -1,10 +1,11 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Image, Dimensions } from "react-native";
 import AppModel from "../models/AppModel";
 import useObservable from "../utils/useObservable";
 import { Button, Text, Divider, Switch, ListItem } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import AppController from "../controllers/AppController";
+import colours from "../../config/colours";
 
 export default function ProfileScreen() {
     const navigation = useNavigation();
@@ -41,6 +42,15 @@ export default function ProfileScreen() {
 
     return (
         <View style={{ flex: 1 }}>
+            <Image
+                style={{
+                    alignSelf: "center",
+                    width: Dimensions.get("window").width * 0.3,
+                    height: Dimensions.get("window").width * 0.3,
+                    marginTop: 16
+                }}
+                source={require("../../assets/userIcon.png")}
+            />
             <View style={{ alignItems: "center", marginVertical: 16 }}>
                 <Text h4>{email}</Text>
             </View>
@@ -142,9 +152,13 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
             </ScrollView>
+            <View style={{ alignItems: "center", marginVertical: 16 }}>
+                    <Text h6>Preferences are saved automatically.</Text>
+            </View>
             <Divider />
             <Button
                 containerStyle={{ margin: 16 }}
+                buttonStyle={{ backgroundColor: colours.secondary }}
                 onPress={handleLogoutOnPress}
                 title={"LOG OUT"}
             />
