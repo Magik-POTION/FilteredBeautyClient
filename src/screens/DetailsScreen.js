@@ -108,7 +108,7 @@ export default function DetailsScreen() {
         </View>
     );
 }
-
+// Margin & Padding fixed
 const styles = StyleSheet.create({
     topInfoContainer: {
         flex: 0.1,
