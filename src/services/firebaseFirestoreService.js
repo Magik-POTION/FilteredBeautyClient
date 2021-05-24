@@ -95,6 +95,6 @@ export default class firebaseFirestoreService {
      */
     static async updateSkinProfile(uid, skinProfile) {
         let docRef = firestore.collection("skinprofile").doc(uid);
-        await docRef.update(skinProfile);
+        await docRef.set(skinProfile);
     }
 }

@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, merge } from "rxjs";
 import UserModel from "../models/UserModel";
 import ProductsModel from "../models/ProductsModel";
 import SkinProfileModel from "../models/SkinProfileModel";
@@ -77,6 +77,22 @@ class AppService {
         this.skinProfileModel.silicone_free.subscribe(() =>
             this.searchController.search()
         );
+
+        merge(
+            this.skinProfileModel.Dairy_Free,
+            this.skinProfileModel.Gluten_Free,
+            this.skinProfileModel.Hypoallergenic,
+            this.skinProfileModel.Peanut_Free_Product,
+            this.skinProfileModel.Sugar_Free,
+            this.skinProfileModel.alcohol_free,
+            this.skinProfileModel.oil_free,
+            this.skinProfileModel.silicone_free
+        ).subscribe((value) => {
+            this.skinProfileController.updateSkinCareProfile(
+                this.userModel.uid.getValue(),
+                this.skinProfileController.getProperties()
+            );
+        });
     }
 }
 

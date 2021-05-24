@@ -47,6 +47,20 @@ export default class SkinProfileController {
         this.skinProfileModel[name].next(value);
     }
 
+    getProperties() {
+        return {
+            Hypoallergenic: this.skinProfileModel.Hypoallergenic.getValue(),
+            Dairy_Free: this.skinProfileModel.Dairy_Free.getValue(),
+            Gluten_Free: this.skinProfileModel.Gluten_Free.getValue(),
+            Peanut_Free_Product:
+                this.skinProfileModel.Peanut_Free_Product.getValue(),
+            Sugar_Free: this.skinProfileModel.Sugar_Free.getValue(),
+            alcohol_free: this.skinProfileModel.alcohol_free.getValue(),
+            oil_free: this.skinProfileModel.oil_free.getValue(),
+            silicone_free: this.skinProfileModel.silicone_free.getValue(),
+        };
+    }
+
     /**
      * Sets default skinprofile parameters.
      */
