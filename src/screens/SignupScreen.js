@@ -83,6 +83,7 @@ export default function SignupScreen() {
                 containerStyle={{ margin: 16 }}
                 buttonStyle={{
                     backgroundColor: colours.primary,
+                    padding: 30
                 }}
                 onPress={handleSubmit}
                 titleStyle={{
