@@ -54,44 +54,48 @@ export default function DetailsScreen() {
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <Image
-                style={{
-                    height: Dimensions.get("window").height * 0.3,
+        <View style={{ flex: 1, backgroundColor: colours.secondary }}>
+            <View style={{ backgroundColor: colours.background }}>
+                <Image
+                    style={{
+                        height: Dimensions.get("window").height * 0.3,
+                        overflow: 'hidden',
+                        margin: 20,
+                        borderRadius: 100,
+                        borderColor: colours.accent,
+                        borderWidth: 3,
 
-                }}
-                source={{ uri: product.image_link }}
-            />
-            <ListItem>
-                <ListItem.Content>
-                    <Text style={{ fontWeight: '900', color: colours.primary }} h4>{product.name}</Text>
-                </ListItem.Content>
-                <Icon
-                    type="material"
-                    name={favourited ? "favorite" : "favorite-outline"}
-                    onPress={handleFavouriteOnPress}
-                    color='red'
+                    }}
+                    source={{ uri: product.image_link }}
                 />
-            </ListItem>
+                <ListItem style={{}}>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, alignItems: 'center' }}>
+                        <Text style={{ fontWeight: '900', color: colours.background, textAlign: 'center' }} h4>{product.name}</Text>
+                        <Icon
+                            type="material"
+                            name={favourited ? "favorite" : "favorite-outline"}
+                            onPress={handleFavouriteOnPress}
+                            color={colours.primary}
+                            style={{ marginTop: 10 }}
+                        />
+                    </ListItem.Content>
 
-
+                </ListItem>
+            </View>
             <View style={styles.topInfoContainer}>
-                <Text>Brand: {product.brand}</Text>
-                <Text>Category: {product.category}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Brand: {product.brand}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Category: {product.category}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Type: {product.product_type}</Text>
             </View>
 
-            <View style={styles.topInfoContainer}>
-                <Text>Type: {product.product_type}</Text>
-            </View>
-
-            <View style={{ flex: 1, }}>
-                <Text style={{ paddingLeft: 10, fontWeight: 'bold', fontSize: 20, marginBottom: 5 }}>Description:</Text>
-                <ScrollView style={{ flex: 1, backgroundColor: "white", paddingTop: 20, paddingLeft: 10, paddingRight: 10, }}>
-                    <Text style={{ lineHeight: 22, paddingLeft: 5, paddingRight: 5, }}>{product.description}</Text>
+            <View style={{ flex: 1, borderBottomColor: colours.accent, borderBottomWidth: 5, }}>
+                <ScrollView style={{ flex: 1, backgroundColor: colours.secondary, paddingTop: 20, paddingLeft: 10, paddingRight: 10, }}>
+                    <Text style={{ color: colours.accent, fontWeight: 'bold', fontSize: 17, marginBottom: 10, marginLeft: 5 }}>Description:</Text>
+                    <Text style={{ fontWeight: '500', fontSize: 13, color: colours.background, lineHeight: 22, paddingLeft: 5, paddingRight: 5, }}>{product.description}</Text>
                 </ScrollView>
             </View>
             <View style={styles.tagContainer}>
-                <Text style={{ color: colours.secondary }}>Tags: {product.tag_list}</Text>
+                <Text style={{ color: colours.background, fontWeight: '500' }}>Tags: {product.tag_list}</Text>
             </View>
             <Button
                 containerStyle={{
@@ -102,26 +106,36 @@ export default function DetailsScreen() {
                     backgroundColor: colours.accent,
                     borderRadius: 30,
                     marginBottom: 20,
+                    padding: 10,
                 }}
                 title={"PURCHASE"}
                 onPress={handleBuyButton}
             />
-        </View>
+        </View >
     );
 }
 // Margin & Padding fixed
 const styles = StyleSheet.create({
     topInfoContainer: {
-        flex: 0.1,
+        flex: 0.15,
         flexDirection: "row",
         justifyContent: "space-evenly",
-        marginTop: 25
+        backgroundColor: colours.secondary,
+        padding: 20,
+        borderBottomColor: colours.accent,
+        borderBottomWidth: 3,
     },
     tagContainer: {
-        flex: 0.2,
+        backgroundColor: colours.primary,
+        flex: 0.15,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
+        padding: 10,
         alignItems: "flex-end",
-        marginLeft: 20,
+        borderRadius: 50,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
     },
 });
+
