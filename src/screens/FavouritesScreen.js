@@ -30,6 +30,7 @@ export default function FavouritesScreen() {
                 <Icon
                     type="material"
                     name="favorite"
+                    color={colours.primary}
                     onPress={() => {
                         AppService.favouritesController.removeProduct(
                             AppService.userModel.uid.getValue(),
@@ -45,8 +46,8 @@ export default function FavouritesScreen() {
 
     return (
         <View style={{ flex: 1 }}>
-             <Header
-                backgroundColor = {colours.background}
+            <Header
+                backgroundColor={colours.background}
                 leftComponent={
                     <Icon
                         type="material"
@@ -63,7 +64,7 @@ export default function FavouritesScreen() {
                     <Icon
                         type="material"
                         name="person"
-                        color= {colours.black}
+                        color={colours.black}
                         onPress={() => {
                             if (AppService.userModel.isAnonymous.getValue()) {
                                 navigation.navigate("Authentication");
