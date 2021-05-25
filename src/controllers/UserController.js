@@ -74,6 +74,8 @@ export default class UserController {
 
         // If user is found, updates the UserModel with the data.
         this.setUserProperties(user);
+
+       
     }
 
     /**
