@@ -1,5 +1,6 @@
 import firestore from "../utils/firestore";
 import Product from "../controllers/Product";
+import firebase from "../utils/firebase";
 
 /**
  * Handles calls to firebase firestore database.
@@ -11,12 +12,17 @@ export default class firebaseFirestoreService {
      * @returns array of favourite products.
      */
     static async getFavourites(uid) {
-        let collectionRef = firestore
-            .collection("favourites")
-            .doc(uid)
-            .collection("products");
-        let querySnapshot = await collectionRef.get();
-        let favouritesArray = querySnapshot.docs.map((doc) => doc.data());
+        let docRef = firestore.collection("favourites").doc(uid);
+
+        let documentSnapshot = await docRef.get();
+        let data = documentSnapshot.data();
+        let favouritesArray = [];
+        if (data) {
+            favouritesArray = Object.values(data).map(
+                (product) => new Product(product)
+            );
+        }
+
         return favouritesArray;
     }
 
@@ -26,12 +32,12 @@ export default class firebaseFirestoreService {
      * @param {Product} product
      */
     static async addFavourite(uid, product) {
-        let documentRef = firestore
-            .collection("favourites")
-            .doc(uid)
-            .collection("products")
-            .doc(product.id);
-        await documentRef.set(product);
+        // Gets the user's document
+        let documentRef = firestore.collection("favourites").doc(uid);
+
+        // Create payload
+        let payload = { [product.id]: product.getProperties() };
+        documentRef.set(payload, { merge: true });
     }
 
     /**
@@ -40,12 +46,11 @@ export default class firebaseFirestoreService {
      * @param {Product} product
      */
     static async removeFavourite(uid, product) {
-        let documentRef = firestore
-            .collection("favourites")
-            .doc(uid)
-            .collection("products")
-            .doc(product.id);
-        await documentRef.delete();
+        let documentRef = firestore.collection("favourites").doc(uid);
+
+        let payload = { [product.id]: firebase.firestore.FieldValue.delete() };
+
+        await documentRef.update(payload);
     }
 
     /**
@@ -54,13 +59,18 @@ export default class firebaseFirestoreService {
      * @returns array of history elements.
      */
     static async getHistory(uid) {
-        let collectionRef = firestore
-            .collection("history")
-            .doc(uid)
-            .collection("products");
+        let docRef = firestore.collection("history").doc(uid);
 
-        let querySnapshot = await collectionRef.get();
-        return querySnapshot.docs.map((doc) => doc.data());
+        let documentSnapshot = await docRef.get();
+        let data = documentSnapshot.data();
+        let historyArray = [];
+        if (data) {
+            historyArray = Object.values(data).map(
+                (product) => new Product(product)
+            );
+        }
+
+        return historyArray;
     }
 
     /**
@@ -69,12 +79,12 @@ export default class firebaseFirestoreService {
      * @param {Product} product
      */
     static async addHistory(uid, product) {
-        let ref = firestore
-            .collection("history")
-            .doc(uid)
-            .collection("products")
-            .doc(product);
-        await ref.set(product.getProperties());
+        // Gets the user's document
+        let documentRef = firestore.collection("history").doc(uid);
+
+        // Create payload
+        let payload = { [product.id]: product.getProperties() };
+        documentRef.set(payload, { merge: true });
     }
 
     /**

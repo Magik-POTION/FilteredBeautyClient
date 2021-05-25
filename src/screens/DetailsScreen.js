@@ -14,6 +14,7 @@ export default function DetailsScreen() {
     const product = useObservable(
         AppService.productDetailModel.selectedProduct
     );
+
     const [favourited, setFavourited] = React.useState(false);
 
     React.useEffect(() => {

@@ -10,7 +10,6 @@ export default function FavouritesScreen() {
     const navigation = useNavigation();
     const productList = useObservable(AppService.favouritesModel.products);
 
-    // TODO: Add Favourites Icon
     function renderItem({ item }) {
         return (
             <ListItem
