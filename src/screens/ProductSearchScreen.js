@@ -30,12 +30,16 @@ export default function ProductSearchScreen() {
                     navigation.navigate("Details");
                 }}
             >
-                <Avatar source={{ uri: item.image_link }} />
-                <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
-                    <ListItem.Subtitle>{item.brand}</ListItem.Subtitle>
+                <Avatar
+                    rounded
+                    size="medium"
+                    source={{ uri: item.image_link }}
+                />
+                <ListItem.Content style={{ backgroundColor: colours.secondary, borderRadius: 15, padding: 5, borderBottomColor: colours.accent, borderBottomWidth: 3 }} >
+                    <ListItem.Title style={{ fontWeight: 'bold', color: colours.background, marginLeft: 10 }}>{item.name}</ListItem.Title>
+                    <ListItem.Subtitle style={{ color: colours.accent, marginLeft: 10 }}>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
-                <Icon type="material" name="chevron-right" />
+                <Icon type="material" name="chevron-right" color={colours.accent} />
             </ListItem>
         );
     }
@@ -48,7 +52,7 @@ export default function ProductSearchScreen() {
     };
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, }}>
             <Header
                 backgroundColor={colours.background}
                 leftComponent={
@@ -82,13 +86,17 @@ export default function ProductSearchScreen() {
                 placeholder={"Search Product By Name or Brand"}
                 onChangeText={handleSearchChange}
                 value={search}
+                lightTheme={true}
+                placeholderTextColor={colours.secondary}
+                round={true}
+                containerStyle={{ backgroundColor: colours.background, }}
             />
             <FlatList
                 ItemSeparatorComponent={Divider}
                 extraData={productList}
                 data={productList}
                 renderItem={renderItem}
-                style={{ flex: 1 }}
+                style={{ flex: 1, }}
                 keyExtractor={keyExtractor}
             />
         </View>
