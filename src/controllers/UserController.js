@@ -29,6 +29,7 @@ export default class UserController {
         }
     }
 
+
     /**
      * Updates the displayName in firebase.
      * @param {String} displayName
@@ -74,6 +75,12 @@ export default class UserController {
 
         // If user is found, updates the UserModel with the data.
         this.setUserProperties(user);
+
+        // ???
+        // var userID = getUID();
+        // return firestore.collection('users').doc(cred.user.uid).set({
+        //     users: this.userID.getValue()
+        // // ???
     }
 
     /**
@@ -106,4 +113,12 @@ export default class UserController {
     async sendEmailPasswordReset(email) {
         firebaseAuthService.resetPassword(email);
     }
+
+
+
+    // ???
+    // updateUserInfo()  {
+    //     const currentUser = firebase.auth().currentUser;
+    //     console.log('You are ' + currentUser);
+    // }
 }

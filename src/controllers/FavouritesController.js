@@ -1,6 +1,7 @@
 import ProductsModel from "../models/ProductsModel";
 import Product from "../controllers/Product";
 import firebaseFirestoreService from "../services/firebaseFirestoreService";
+import firestore from "../utils/firestore"; 
 
 /**
  * Manages a ProductsModel as a collection of favourite products.
@@ -43,10 +44,16 @@ export default class FavouritesController {
         // adds product to list locallly
         let productList = [product].concat(
             this.favouritesModel.products.getValue()
-        );
-
+        )
         // publish the new list of products
-        this.favouritesModel.products.next(productList);
+        this.favouritesModel.products.next(productList)
+        
+        // ??? adding to firestore under uid 
+        return firestore.collection('users').doc(uid).set({
+            favourites: favouritesModel.products.getValue()
+        });
+        // ???
+
     }
 
     /**

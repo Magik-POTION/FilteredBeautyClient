@@ -122,4 +122,12 @@ export default class FirebaseService {
     static resetPassword = async (email) => {
         firebase.auth().sendPasswordResetEmail(email);
     };
+
+
+    // ???
+    static getUID = async(uid) =>{
+        var user = firebase.auth().getCurrentUser();
+        return user.uid.get();
+
+    };
 }
