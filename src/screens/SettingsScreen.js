@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Linking } from "react-native";
+import { View, StyleSheet, Linking, Image, Dimensions } from "react-native";
 import { Button } from "react-native-elements";
 import colours from "../../config/colours";
 
@@ -16,6 +16,15 @@ export default function SettingsScreen() {
 
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
+            <Image
+                style={{
+                    width: Dimensions.get("window").width * 0.5,
+                    height: Dimensions.get("window").width * 0.5,
+                    marginLeft: 100,
+                    marginBottom: 100
+                }}
+                source={require("../../assets/logo.png")}
+            />
             {/* <Button
                 containerStyle={styles.buttonContainer}
                 buttonStyle={styles.accentButton}
@@ -48,5 +57,9 @@ const styles = StyleSheet.create({
     },
     secondaryButton: {
         backgroundColor: colours.secondary,
+        padding: 15,
+        borderRadius: 30,
+        borderBottomColor: colours.accent,
+        borderBottomWidth: 5,
     },
 });
