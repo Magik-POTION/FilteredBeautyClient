@@ -67,6 +67,7 @@ export default function DetailsScreen() {
                             borderRadius: 100,
                             borderColor: colours.accent,
                             borderWidth: 3,
+                            marginTop: 5,
                         }}
                         source={{ uri: product.image_link }}
                     />
