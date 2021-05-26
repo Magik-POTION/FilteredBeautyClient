@@ -30,7 +30,7 @@ export default function HistoryScreen() {
                     <ListItem.Title style={{ fontWeight: 'bold', color: colours.background, marginLeft: 10, fontSize: 15 }}>{item.name}</ListItem.Title>
                     <ListItem.Subtitle style={{ color: colours.accent, marginLeft: 10, fontSize: 12 }}>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
-                <Icon type="material" name="chevron-right" />
+                <Icon type="material" name="chevron-right" color={colours.accent} />
             </ListItem>
         );
     }
