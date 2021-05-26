@@ -27,7 +27,7 @@ export default function HistoryScreen() {
                     rounded
                     source={{ uri: item.image_link }} />
                 <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 5, borderRadius: 15, }}>
-                    <ListItem.Title style={{ fontWeight: 'bold', color: colours.background, marginLeft: 10, fontSize: 15 }}>{item.name}>{item.name}</ListItem.Title>
+                    <ListItem.Title style={{ fontWeight: 'bold', color: colours.background, marginLeft: 10, fontSize: 15 }}>{item.name}</ListItem.Title>
                     <ListItem.Subtitle style={{ color: colours.accent, marginLeft: 10, fontSize: 12 }}>{item.brand}>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
                 <Icon type="material" name="chevron-right" />
