@@ -96,7 +96,7 @@ export default function DetailsScreen() {
             <View style={{ flex: 1, borderBottomColor: colours.accent, borderBottomWidth: 3, }}>
                 <ScrollView style={{ flex: 1, backgroundColor: colours.secondary, paddingTop: 20, paddingLeft: 10, paddingRight: 10, }}>
                     <Text style={{ color: colours.accent, fontWeight: 'bold', fontSize: 17, marginBottom: 10, marginLeft: 5 }}>Description:</Text>
-                    <Text style={{ fontWeight: '500', fontSize: 13, color: colours.background, lineHeight: 22, paddingLeft: 5, paddingRight: 5, }}>{product.description}</Text>
+                    <Text style={{ fontWeight: '500', fontSize: 13, color: colours.background, lineHeight: 28, paddingLeft: 5, paddingRight: 5, paddingBottom: 15 }}>{product.description}</Text>
                 </ScrollView>
             </View>
             <View style={styles.tagContainer}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     },
     tagContainer: {
         backgroundColor: colours.primary,
-        flex: 0.15,
+        flex: 0.10,
         flexDirection: "row",
         justifyContent: "space-evenly",
         padding: 10,
