@@ -21,6 +21,7 @@ export default function ProductSearchScreen() {
     function renderItem({ item }) {
         return (
             <ListItem
+                containerStyle={{ backgroundColor: colours.background, }}
                 onPress={() => {
                     AppService.productDetailController.selectItem(item);
                     AppService.historyController.addProduct(
@@ -90,6 +91,8 @@ export default function ProductSearchScreen() {
                 placeholderTextColor={colours.secondary}
                 round={true}
                 containerStyle={{ backgroundColor: colours.background, }}
+                inputContainerStyle={{ backgroundColor: colours.background, borderBottomColor: colours.secondary, borderBottomWidth: 2, borderColor: colours.secondary, borderWidth: 2, borderRadius: 50 }}
+                style={{ fontWeight: '500', fontSize: 14, backgroundColor: 'white', }}
             />
             <FlatList
                 ItemSeparatorComponent={Divider}
