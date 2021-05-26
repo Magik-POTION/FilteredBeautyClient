@@ -55,19 +55,23 @@ export default function DetailsScreen() {
 
     return (
         <View style={{ flex: 1, backgroundColor: colours.secondary }}>
-            <View style={{ backgroundColor: colours.background }}>
-                <Image
-                    style={{
-                        height: Dimensions.get("window").height * 0.3,
-                        overflow: 'hidden',
-                        margin: 20,
-                        borderRadius: 100,
-                        borderColor: colours.accent,
-                        borderWidth: 3,
+            <View style={{ backgroundColor: colours.background, }}>
 
-                    }}
-                    source={{ uri: product.image_link }}
-                />
+                {/* Product Image View */}
+                <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                    <Image
+                        style={{
+                            height: Dimensions.get("window").height * 0.25,
+                            width: Dimensions.get("window").height * 0.25,
+                            overflow: 'hidden',
+                            borderRadius: 100,
+                            borderColor: colours.accent,
+                            borderWidth: 3,
+                        }}
+                        source={{ uri: product.image_link }}
+                    />
+                </View>
+
                 <ListItem style={{}}>
                     <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, alignItems: 'center' }}>
                         <Text style={{ fontWeight: '900', color: colours.background, textAlign: 'center' }} h4>{product.name}</Text>
@@ -83,12 +87,12 @@ export default function DetailsScreen() {
                 </ListItem>
             </View>
             <View style={styles.topInfoContainer}>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Brand: {product.brand}</Text>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Category: {product.category}</Text>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12 }}>Type: {product.product_type}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Brand: {product.brand}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Category: {product.category}</Text>
+                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Type: {product.product_type}</Text>
             </View>
 
-            <View style={{ flex: 1, borderBottomColor: colours.accent, borderBottomWidth: 5, }}>
+            <View style={{ flex: 1, borderBottomColor: colours.accent, borderBottomWidth: 3, }}>
                 <ScrollView style={{ flex: 1, backgroundColor: colours.secondary, paddingTop: 20, paddingLeft: 10, paddingRight: 10, }}>
                     <Text style={{ color: colours.accent, fontWeight: 'bold', fontSize: 17, marginBottom: 10, marginLeft: 5 }}>Description:</Text>
                     <Text style={{ fontWeight: '500', fontSize: 13, color: colours.background, lineHeight: 22, paddingLeft: 5, paddingRight: 5, }}>{product.description}</Text>
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderBottomColor: colours.accent,
         borderBottomWidth: 3,
+        flexWrap: 'wrap',
     },
     tagContainer: {
         backgroundColor: colours.primary,
