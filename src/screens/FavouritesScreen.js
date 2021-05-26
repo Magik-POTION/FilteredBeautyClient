@@ -26,9 +26,9 @@ export default function FavouritesScreen() {
                     rounded
                     size='medium'
                     source={{ uri: item.image_link }} />
-                <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
-                    <ListItem.Subtitle>{item.brand}</ListItem.Subtitle>
+                <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 5, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                    <ListItem.Title style={{ fontWeight: 'bold', color: colours.background, marginLeft: 10, fontSize: 15 }}>{item.name}</ListItem.Title>
+                    <ListItem.Subtitle style={{ color: colours.accent, marginLeft: 10, fontSize: 12 }}>{item.brand}</ListItem.Subtitle>
                 </ListItem.Content>
                 <Icon
                     type="material"
