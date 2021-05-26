@@ -52,24 +52,39 @@ export default function SignupScreen() {
             </View>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
                 <Input
-                    style={{ backgroundColor: colours.grey }}
+                    leftIcon={
+                        <Icon
+                            name='email'
+                            size={24}
+                            color={colours.primary}
+                        />
+                    }
+                    style={{ backgroundColor: 'lavender', borderRadius: 10, marginRight: 24 }}
                     label={"EMAIL"}
-                    placeholder={"email@provider.com"}
+                    placeholder={" email@provider.com"}
                     value={email}
                     onChangeText={(value) => setEmail(value)}
                     autoCapitalize={"none"}
                     keyboardType={"email-address"}
                 />
                 <Input
-                    style={{ backgroundColor: colours.grey }}
+                    leftIcon={
+                        <Icon
+                            name='lock'
+                            size={24}
+                            color={colours.primary}
+                        />
+                    }
+                    style={{ backgroundColor: 'lavender', borderRadius: 10, }}
                     label={"PASSWORD"}
-                    placeholder={"MyPassword"}
+                    placeholder={" MyPassword"}
                     keyboardType={"visible-password"}
                     value={password}
                     onChangeText={(value) => setPassword(value)}
                     secureTextEntry={passwordHidden}
                     rightIcon={
                         <Icon
+                            color='lavender'
                             type={"material"}
                             name={
                                 passwordHidden ? "visibility" : "visibility-off"
@@ -80,10 +95,11 @@ export default function SignupScreen() {
                 />
             </KeyboardAvoidingView>
             <Button
-                containerStyle={{ margin: 16 }}
+                containerStyle={{ margin: 50, width: 'auto', height: 'auto' }}
                 buttonStyle={{
                     backgroundColor: colours.primary,
-                    padding: 30
+                    padding: 15,
+                    borderRadius: 30,
                 }}
                 onPress={handleSubmit}
                 titleStyle={{
