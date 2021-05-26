@@ -42,22 +42,26 @@ export default function ProfileScreen() {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: colours.secondary }}>
             <Image
                 style={{
                     alignSelf: "center",
                     width: Dimensions.get("window").width * 0.3,
                     height: Dimensions.get("window").width * 0.3,
-                    marginTop: 16
+                    marginTop: 16,
+                    borderRadius: 100,
+                    borderColor: colours.accent,
+                    borderWidth: 2,
+                    backgroundColor: 'white'
                 }}
                 source={require("../../assets/userIcon.png")}
             />
-            <View style={{ alignItems: "center", marginVertical: 16 }}>
-                <Text h4>{email}</Text>
+            <View style={{ alignItems: "center", marginVertical: 16, backgroundColor: colours.primary, marginLeft: 20, marginRight: 20, borderRadius: 20 }}>
+                <Text style={{ fontWeight: 'bold', color: colours.background }} h4>{email}</Text>
             </View>
             <Divider />
-            <View style={{ alignItems: "center", marginVertical: 16 }}>
-                <Text h4>Skin Preferences</Text>
+            <View style={{ alignItems: "center", marginVertical: 16, }}>
+                <Text style={{ fontWeight: 'bold', color: colours.background, textDecorationLine: 'underline', textDecorationColor: colours.accent, }} h4>Skin Preferences</Text>
             </View>
             <ScrollView
                 style={{
@@ -65,10 +69,12 @@ export default function ProfileScreen() {
                 }}
             >
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Sensitive Skin</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Sensitive Skin</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isHypoAllergenic}
                         onValueChange={(value) =>
                             handleSwitch("Hypoallergenic", value)
@@ -76,10 +82,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Oily Skin</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Oily Skin</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isOilFree}
                         onValueChange={(value) =>
                             handleSwitch("oil_free", value)
@@ -87,10 +95,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Dry Skin</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Dry Skin</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isAlcohalFree}
                         onValueChange={(value) =>
                             handleSwitch("alcohol_free", value)
@@ -98,10 +108,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Allergic to Dairy</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Dairy</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isDairyFree}
                         onValueChange={(value) =>
                             handleSwitch("Dairy_Free", value)
@@ -109,10 +121,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Allergic to Gluten</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Gluten</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isGlutenFree}
                         onValueChange={(value) =>
                             handleSwitch("Gluten_Free", value)
@@ -120,10 +134,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Allergic to Peanuts</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Peanuts</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isPeanutFreeProduct}
                         onValueChange={(value) =>
                             handleSwitch("Peanut_Free_Product", value)
@@ -131,10 +147,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Allergic to Sugar</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Sugar</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isSugarFree}
                         onValueChange={(value) =>
                             handleSwitch("Sugar_Free", value)
@@ -142,10 +160,12 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content>
-                        <ListItem.Title>Allergic to Silicone</ListItem.Title>
+                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
+                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Silicone</ListItem.Title>
                     </ListItem.Content>
                     <Switch
+                        color={colours.secondary}
+                        thumbColor={colours.accent}
                         value={isSiliconeFree}
                         onValueChange={(value) =>
                             handleSwitch("silicone_free", value)
@@ -154,12 +174,12 @@ export default function ProfileScreen() {
                 </ListItem>
             </ScrollView>
             <View style={{ alignItems: "center", marginVertical: 16 }}>
-                    <Text h6>Preferences are saved automatically.</Text>
+                <Text style={{ color: 'white' }} h6>Preferences are saved automatically.</Text>
             </View>
             <Divider />
             <Button
-                containerStyle={{ margin: 16 }}
-                buttonStyle={{ backgroundColor: colours.secondary }}
+                containerStyle={{ margin: 15 }}
+                buttonStyle={{ backgroundColor: colours.primary, borderRadius: 25, }}
                 onPress={handleLogoutOnPress}
                 title={"LOG OUT"}
             />
