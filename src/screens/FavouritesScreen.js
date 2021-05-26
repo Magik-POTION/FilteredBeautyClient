@@ -22,7 +22,10 @@ export default function FavouritesScreen() {
                     navigation.navigate("Details");
                 }}
             >
-                <Avatar source={{ uri: item.image_link }} />
+                <Avatar
+                    rounded
+                    size='medium'
+                    source={{ uri: item.image_link }} />
                 <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
                     <ListItem.Subtitle>{item.brand}</ListItem.Subtitle>
