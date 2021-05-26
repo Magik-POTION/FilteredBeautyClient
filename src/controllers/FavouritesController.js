@@ -39,7 +39,7 @@ export default class FavouritesController {
      */
     async addProduct(uid, product) {
         // adds product to firestore
-        // await firebaseFirestoreService.addFavourite(uid, product);
+        await firebaseFirestoreService.addFavourite(uid, product);
 
         // adds product to list locallly
         let productList = [product].concat(
@@ -63,7 +63,7 @@ export default class FavouritesController {
      */
     async removeProduct(uid, product) {
         // removes product from firestore
-        // await firebaseFirestoreService.removeFavourite(uid, product)
+        await firebaseFirestoreService.removeFavourite(uid, product);
         let oldList = this.favouritesModel.products.getValue();
         let filteredList = oldList.filter(
             (element) => product.id != element.id

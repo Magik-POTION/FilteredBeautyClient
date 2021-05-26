@@ -44,23 +44,41 @@ export default function LoginScreen({ navigation }) {
             </View>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
                 <Input
-                    style={{ backgroundColor: colours.grey }}
+                    leftIcon={
+                        <Icon
+                            name='email'
+                            size={24}
+                            color={colours.primary}
+                        />
+                    }
+                    style={{ backgroundColor: 'lavender', borderRadius: 10, marginRight: 24 }}
+                    labelStyle={{ marginBottom: 5 }}
                     label={"EMAIL"}
-                    placeholder={"email@provider.com"}
+                    placeholder={" email@provider.com"}
                     value={email}
                     onChangeText={(value) => setEmail(value)}
                     autoCapitalize={"none"}
+
                 />
                 <Input
-                    style={{ backgroundColor: colours.grey }}
+                    leftIcon={
+                        <Icon
+                            name='lock'
+                            size={24}
+                            color={colours.primary}
+                        />
+                    }
+                    style={{ backgroundColor: 'lavender', borderRadius: 10, }}
                     label={"PASSWORD"}
-                    placeholder={"MyPassword"}
+                    placeholder={" MyPassword"}
+                    labelStyle={{ marginBottom: 5 }}
                     value={password}
                     onChangeText={(value) => setPassword(value)}
                     secureTextEntry={passwordHidden}
                     rightIcon={
                         <Icon
                             type="material"
+                            color='lavender'
                             name={
                                 passwordHidden ? "visibility" : "visibility-off"
                             }
@@ -70,14 +88,16 @@ export default function LoginScreen({ navigation }) {
                 />
             </KeyboardAvoidingView>
             <Button
-                containerStyle={{ margin: 16 }}
+                containerStyle={{ margin: 50, width: 'auto', height: 'auto' }}
                 buttonStyle={{
                     backgroundColor: colours.primary,
+                    borderRadius: 30,
                 }}
                 onPress={handleSubmit}
                 titleStyle={{
                     fontSize: 20,
                     color: "white",
+                    fontWeight: 'bold'
                 }}
                 title={"LOG IN"}
             />

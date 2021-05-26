@@ -31,7 +31,7 @@ export default class HistoryController {
      */
     async addProduct(uid, product) {
         // adds product to firestore
-        // await firebaseFirestoreService.addHistory(uid, product);
+        await firebaseFirestoreService.addHistory(uid, product);
 
         // adds product to list locallly
         let productList = [product].concat(

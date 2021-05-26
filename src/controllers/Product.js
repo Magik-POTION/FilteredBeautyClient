@@ -22,6 +22,15 @@ export default class Product {
     getProperties() {
         return {
             id: this.id,
+            brand: this.brand,
+            name: this.name,
+            image_link: this.image_link,
+            description: this.description,
+            category: this.category,
+            product_type: this.product_type,
+            tag_list: this.tag_list,
+            api_featured_image: this.api_featured_image,
+            product_colors: this.product_colors,
         };
     }
 }
