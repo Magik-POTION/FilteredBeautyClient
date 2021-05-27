@@ -1,6 +1,13 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { Text, Image, Button, Icon, ListItem } from "react-native-elements";
+import {
+    Text,
+    Image,
+    Button,
+    Icon,
+    ListItem,
+    Chip,
+} from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppService from "../services/AppService";
 import { Dimensions, Linking } from "react-native";
@@ -73,8 +80,7 @@ export default function DetailsScreen() {
                         source={{ uri: product.image_link }}
                     />
                 </View>
-
-                <ListItem style={{}}>
+                <ListItem>
                     <ListItem.Content
                         style={{
                             backgroundColor: colours.secondary,
@@ -139,9 +145,9 @@ export default function DetailsScreen() {
                 </Text>
             </View>
             <View style={styles.tagContainer}>
-                <Text style={{ color: colours.background, fontWeight: "500" }}>
-                    Tags: {product.tag_list}
-                </Text>
+                {product.tag_list.map((tag, index) => {
+                    return <Chip key={index} title={tag.toLowerCase()} containerStyle={{margin: 4}}/>;
+                })}
             </View>
             <View
                 style={{
@@ -215,15 +221,8 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     tagContainer: {
-        backgroundColor: colours.primary,
-        flex: 0.1,
         flexDirection: "row",
-        justifyContent: "space-evenly",
-        padding: 10,
-        alignItems: "flex-end",
-        borderRadius: 50,
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10,
+        flexWrap: "wrap",
+        margin: 16,
     },
 });
