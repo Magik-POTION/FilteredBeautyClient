@@ -29,6 +29,7 @@ export default function ProfileScreen() {
     const handleLogoutOnPress = async () => {
         AppService.favouritesController.reset();
         AppService.historyController.reset();
+        AppService.skinProfileController.reset();
         await AppService.userController.signOut();
         navigation.navigate("Home");
     };
@@ -52,16 +53,40 @@ export default function ProfileScreen() {
                     borderRadius: 100,
                     borderColor: colours.accent,
                     borderWidth: 2,
-                    backgroundColor: 'white'
+                    backgroundColor: "white",
                 }}
                 source={require("../../assets/userIcon.png")}
             />
-            <View style={{ alignItems: "center", marginVertical: 16, backgroundColor: colours.primary, marginLeft: 20, marginRight: 20, borderRadius: 20 }}>
-                <Text style={{ fontWeight: 'bold', color: colours.background }} h4>{email}</Text>
+            <View
+                style={{
+                    alignItems: "center",
+                    marginVertical: 16,
+                    backgroundColor: colours.primary,
+                    marginLeft: 20,
+                    marginRight: 20,
+                    borderRadius: 20,
+                }}
+            >
+                <Text
+                    style={{ fontWeight: "bold", color: colours.background }}
+                    h4
+                >
+                    {email}
+                </Text>
             </View>
             <Divider />
-            <View style={{ alignItems: "center", marginVertical: 16, }}>
-                <Text style={{ fontWeight: 'bold', color: colours.background, textDecorationLine: 'underline', textDecorationColor: colours.accent, }} h4>Skin Preferences</Text>
+            <View style={{ alignItems: "center", marginVertical: 16 }}>
+                <Text
+                    style={{
+                        fontWeight: "bold",
+                        color: colours.background,
+                        textDecorationLine: "underline",
+                        textDecorationColor: colours.accent,
+                    }}
+                    h4
+                >
+                    Skin Preferences
+                </Text>
             </View>
             <ScrollView
                 style={{
@@ -69,8 +94,23 @@ export default function ProfileScreen() {
                 }}
             >
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Sensitive Skin</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Sensitive Skin
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -82,8 +122,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Oily Skin</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Oily Skin
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -95,8 +150,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Dry Skin</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Dry Skin
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -108,8 +178,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Dairy</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Allergic to Dairy
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -121,8 +206,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Gluten</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Allergic to Gluten
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -134,8 +234,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Peanuts</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Allergic to Peanuts
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -147,8 +262,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Sugar</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Allergic to Sugar
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -160,8 +290,23 @@ export default function ProfileScreen() {
                     />
                 </ListItem>
                 <ListItem>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, borderBottomColor: colours.accent, borderBottomWidth: 3 }}>
-                        <ListItem.Title style={{ color: colours.background, fontWeight: 'bold' }}>Allergic to Silicone</ListItem.Title>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            borderBottomColor: colours.accent,
+                            borderBottomWidth: 3,
+                        }}
+                    >
+                        <ListItem.Title
+                            style={{
+                                color: colours.background,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Allergic to Silicone
+                        </ListItem.Title>
                     </ListItem.Content>
                     <Switch
                         color={colours.secondary}
@@ -174,12 +319,17 @@ export default function ProfileScreen() {
                 </ListItem>
             </ScrollView>
             <View style={{ alignItems: "center", marginVertical: 16 }}>
-                <Text style={{ color: 'white' }} h6>Preferences are saved automatically.</Text>
+                <Text style={{ color: "white" }} h6>
+                    Preferences are saved automatically.
+                </Text>
             </View>
             <Divider />
             <Button
                 containerStyle={{ margin: 15 }}
-                buttonStyle={{ backgroundColor: colours.primary, borderRadius: 25, }}
+                buttonStyle={{
+                    backgroundColor: colours.primary,
+                    borderRadius: 25,
+                }}
                 onPress={handleLogoutOnPress}
                 title={"LOG OUT"}
             />

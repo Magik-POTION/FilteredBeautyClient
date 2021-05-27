@@ -22,6 +22,7 @@ export default function SignupScreen() {
     const handleSubmit = async () => {
         try {
             await AppService.userController.signUp(email, password);
+            navigation.navigate("Search")
             navigation.navigate("Profile");
         } catch (error) {
             Alert.alert("Sign Up Error", error.message);

@@ -1,6 +1,13 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { Text, Image, Button, Icon, ListItem } from "react-native-elements";
+import {
+    Text,
+    Image,
+    Button,
+    Icon,
+    ListItem,
+    Chip,
+} from "react-native-elements";
 import useObservable from "../utils/useObservable";
 import AppService from "../services/AppService";
 import { Dimensions, Linking } from "react-native";
@@ -54,16 +61,17 @@ export default function DetailsScreen() {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: colours.secondary }}>
-            <View style={{ backgroundColor: colours.background, }}>
-
+        <ScrollView style={{ flex: 1, backgroundColor: colours.secondary }}>
+            <View style={{ backgroundColor: colours.background }}>
                 {/* Product Image View */}
-                <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                <View
+                    style={{ justifyContent: "center", alignItems: "center" }}
+                >
                     <Image
                         style={{
                             height: Dimensions.get("window").height * 0.25,
                             width: Dimensions.get("window").height * 0.25,
-                            overflow: 'hidden',
+                            overflow: "hidden",
                             borderRadius: 100,
                             borderColor: colours.accent,
                             borderWidth: 3,
@@ -72,10 +80,25 @@ export default function DetailsScreen() {
                         source={{ uri: product.image_link }}
                     />
                 </View>
-
-                <ListItem style={{}}>
-                    <ListItem.Content style={{ backgroundColor: colours.secondary, padding: 15, borderRadius: 15, alignItems: 'center' }}>
-                        <Text style={{ fontWeight: '900', color: colours.background, textAlign: 'center' }} h4>{product.name}</Text>
+                <ListItem>
+                    <ListItem.Content
+                        style={{
+                            backgroundColor: colours.secondary,
+                            padding: 15,
+                            borderRadius: 15,
+                            alignItems: "center",
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontWeight: "900",
+                                color: colours.background,
+                                textAlign: "center",
+                            }}
+                            h4
+                        >
+                            {product.name}
+                        </Text>
                         <Icon
                             type="material"
                             name={favourited ? "favorite" : "favorite-outline"}
@@ -84,23 +107,89 @@ export default function DetailsScreen() {
                             style={{ marginTop: 10 }}
                         />
                     </ListItem.Content>
-
                 </ListItem>
             </View>
             <View style={styles.topInfoContainer}>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Brand: {product.brand}</Text>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Category: {product.category}</Text>
-                <Text style={{ color: colours.accent, fontWeight: '700', marginRight: 10, fontSize: 12, marginBottom: 3 }}>Type: {product.product_type}</Text>
-            </View>
-
-            <View style={{ flex: 1, borderBottomColor: colours.accent, borderBottomWidth: 3, }}>
-                <ScrollView style={{ flex: 1, backgroundColor: colours.secondary, paddingTop: 20, paddingLeft: 10, paddingRight: 10, }}>
-                    <Text style={{ color: colours.accent, fontWeight: 'bold', fontSize: 17, marginBottom: 10, marginLeft: 5 }}>Description:</Text>
-                    <Text style={{ fontWeight: '500', fontSize: 13, color: colours.background, lineHeight: 28, paddingLeft: 5, paddingRight: 5, paddingBottom: 15 }}>{product.description}</Text>
-                </ScrollView>
+                <Text
+                    style={{
+                        color: colours.accent,
+                        fontWeight: "700",
+                        marginRight: 10,
+                        fontSize: 12,
+                        marginBottom: 3,
+                    }}
+                >
+                    Brand: {product.brand}
+                </Text>
+                <Text
+                    style={{
+                        color: colours.accent,
+                        fontWeight: "700",
+                        marginRight: 10,
+                        fontSize: 12,
+                        marginBottom: 3,
+                    }}
+                >
+                    Category: {product.category}
+                </Text>
+                <Text
+                    style={{
+                        color: colours.accent,
+                        fontWeight: "700",
+                        marginRight: 10,
+                        fontSize: 12,
+                        marginBottom: 3,
+                    }}
+                >
+                    Type: {product.product_type}
+                </Text>
             </View>
             <View style={styles.tagContainer}>
-                <Text style={{ color: colours.background, fontWeight: '500' }}>Tags: {product.tag_list}</Text>
+                {product.tag_list.map((tag, index) => {
+                    return <Chip key={index} title={tag.toLowerCase()} containerStyle={{margin: 4}}/>;
+                })}
+            </View>
+            <View
+                style={{
+                    flex: 1,
+                    borderBottomColor: colours.accent,
+                    borderBottomWidth: 3,
+                }}
+            >
+                <View
+                    style={{
+                        flex: 1,
+                        backgroundColor: colours.secondary,
+                        paddingTop: 20,
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: colours.accent,
+                            fontWeight: "bold",
+                            fontSize: 17,
+                            marginBottom: 10,
+                            marginLeft: 5,
+                        }}
+                    >
+                        Description:
+                    </Text>
+                    <Text
+                        style={{
+                            fontWeight: "500",
+                            fontSize: 13,
+                            color: colours.background,
+                            lineHeight: 28,
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            paddingBottom: 15,
+                        }}
+                    >
+                        {product.description}
+                    </Text>
+                </View>
             </View>
             <Button
                 containerStyle={{
@@ -116,7 +205,7 @@ export default function DetailsScreen() {
                 title={"PURCHASE"}
                 onPress={handleBuyButton}
             />
-        </View >
+        </ScrollView>
     );
 }
 // Margin & Padding fixed
@@ -129,19 +218,11 @@ const styles = StyleSheet.create({
         padding: 20,
         borderBottomColor: colours.accent,
         borderBottomWidth: 3,
-        flexWrap: 'wrap',
+        flexWrap: "wrap",
     },
     tagContainer: {
-        backgroundColor: colours.primary,
-        flex: 0.10,
         flexDirection: "row",
-        justifyContent: "space-evenly",
-        padding: 10,
-        alignItems: "flex-end",
-        borderRadius: 50,
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10,
+        flexWrap: "wrap",
+        margin: 16,
     },
 });
-
