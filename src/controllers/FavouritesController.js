@@ -1,7 +1,7 @@
 import ProductsModel from "../models/ProductsModel";
 import Product from "../controllers/Product";
 import firebaseFirestoreService from "../services/firebaseFirestoreService";
-import db from "../../firestore"; 
+import db from "../utils/firestore"; 
 
 /**
  * Manages a ProductsModel as a collection of favourite products.
